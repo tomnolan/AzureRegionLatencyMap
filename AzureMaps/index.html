@@ -3,24 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Azure Region Latency Map (Leaflet)</title>
+  <title>Azure Region Latency Map</title>
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Azure Maps SDK -->
+  <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css" />
+  <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
 
-  <link rel="stylesheet" href="css/leaflet.css" />
+  <link rel="stylesheet" href="map.css" />
 </head>
 <body>
 
 <!-- Filter Pane -->
 <div id="filter-pane">
   <div id="filter-header">
-    <h1>Azure Region Latency Map</h1>
-    <p>Visualizes network latency between Azure regions on an interactive map. Latency data is sourced from the <a href="https://learn.microsoft.com/en-us/azure/networking/azure-network-latency" target="_blank" rel="noopener">Azure network latency statistics</a> published by Microsoft. Region location data is retrieved directly from Azure via <a href="https://learn.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-15.5.0" target="_blank" rel="noopener">PowerShell</a> or the <a href="https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest#az-account-list-locations" target="_blank" rel="noopener">Azure CLI</a>.</p>
-    <div id="github-bar">
-      <a href="https://github.com/tomnolan/AzureRegionLatencyMap" target="_blank" rel="noopener"> github.com/tomnolan/AzureRegionLatencyMap</a>
-    </div>
+    <h1>Azure Region Latency</h1>
+    <p>Filter regions and latency connections</p>
   </div>
 
   <div id="filter-body">
@@ -39,7 +36,7 @@
       <div class="tree-picker" id="dst-tree"></div>
     </div>
 
-    <div class="filter-section">
+    <div class="filter-section">  
       <label>Latency Range (ms)</label>
       <div class="range-row">
         <input type="number" id="lat-min" placeholder="Min" min="0" />
@@ -52,7 +49,6 @@
       <button class="btn btn-primary" id="btn-apply">Apply</button>
       <button class="btn btn-secondary" id="btn-reset">Reset</button>
     </div>
-
   </div>
 
   <div id="stats-bar">
@@ -62,6 +58,15 @@
 
 <!-- Map -->
 <div id="map-container">
+  <div id="api-key-modal">
+    <div id="api-key-box">
+      <h2>Azure Maps API Key</h2>
+      <p>Enter your <a href="https://portal.azure.com/" target="_blank" rel="noopener">Azure Maps</a> subscription key. It will be stored for this browser session only.</p>
+      <input type="text" id="api-key-input" placeholder="Paste your API key here" autocomplete="off" spellcheck="false" />
+      <p id="api-key-error">Please enter an API key.</p>
+      <button id="api-key-submit">Load Map</button>
+    </div>
+  </div>
   <div id="loading"><div class="spinner"></div></div>
   <div id="map"></div>
   <div id="tooltip">
@@ -104,6 +109,6 @@
   </div>
 </div>
 
-<script src="js/leaflet.js"></script>
+<script src="map.js"></script>
 </body>
 </html>
