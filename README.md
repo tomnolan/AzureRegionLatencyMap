@@ -1,6 +1,10 @@
 # Azure Region Latency Map
 
-An interactive map visualizing network latency between Azure regions worldwide — and a fun experiment in building a real project almost entirely through conversation with GitHub Copilot in VS Code.
+Live version: https://azlatencymap.tinyint.com
+
+This is an interactive map visualizing network latency between Azure regions worldwide — and a fun experiment in building a real project almost entirely through conversation with GitHub Copilot in VS Code.
+
+![Screenshot of Azure Region Latency Map](images/screenshot.png)
 
 ---
 
