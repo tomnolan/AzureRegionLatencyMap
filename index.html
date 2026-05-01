@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azure Region Latency Map</title>
+
+  <!-- Azure Maps SDK -->
+  <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css" />
+  <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+
+  <link rel="stylesheet" href="map.css" />
+</head>
+<body>
+
+<!-- Filter Pane -->
+<div id="filter-pane">
+  <div id="filter-header">
+    <h1>Azure Region Latency</h1>
+    <p>Filter regions and latency connections</p>
+  </div>
+
+  <div id="filter-body">
+
+    <div class="filter-group-header">Source</div>
+
+    <div class="filter-section">
+      <label>Geography Group</label>
+      <select id="src-geo-group">
+        <option value="">All Geography Groups</option>
+      </select>
+    </div>
+
+    <div class="filter-section">
+      <label>Geography</label>
+      <select id="src-geo">
+        <option value="">All Geographies</option>
+      </select>
+    </div>
+
+    <div class="filter-section">
+      <label>Regions</label>
+      <div class="multiselect-wrapper" id="src-region-list"></div>
+    </div>
+
+    <div class="filter-group-header">Destination</div>
+
+    <div class="filter-section">
+      <label>Geography Group</label>
+      <select id="dst-geo-group">
+        <option value="">All Geography Groups</option>
+      </select>
+    </div>
+
+    <div class="filter-section">
+      <label>Geography</label>
+      <select id="dst-geo">
+        <option value="">All Geographies</option>
+      </select>
+    </div>
+
+    <div class="filter-section">
+      <label>Regions</label>
+      <div class="multiselect-wrapper" id="dst-region-list"></div>
+    </div>
+
+    <div class="filter-section">  
+      <label>Latency Range (ms)</label>
+      <div class="range-row">
+        <input type="number" id="lat-min" placeholder="Min" min="0" />
+        <span>–</span>
+        <input type="number" id="lat-max" placeholder="Max" min="0" />
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn btn-primary" id="btn-apply">Apply</button>
+      <button class="btn btn-secondary" id="btn-reset">Reset</button>
+    </div>
+  </div>
+
+  <div id="stats-bar">
+    Showing <span id="stat-lines">0</span> connections across <span id="stat-regions">0</span> regions
+  </div>
+</div>
+
+<!-- Map -->
+<div id="map-container">
+  <div id="loading"><div class="spinner"></div></div>
+  <div id="map"></div>
+  <div id="tooltip">
+    <div class="tt-title" id="tt-title"></div>
+    <div class="tt-latency" id="tt-latency"></div>
+    <div class="tt-latency-rev" id="tt-latency-rev"></div>
+    <div class="tt-sub" id="tt-sub"></div>
+  </div>
+  <div id="legend">
+    <div class="leg-title">Latency (ms)</div>
+    <div class="leg-item"><div class="leg-line" style="background:#00e676"></div> &lt; 50 ms</div>
+    <div class="leg-item"><div class="leg-line" style="background:#ffee58"></div> 50 – 100 ms</div>
+    <div class="leg-item"><div class="leg-line" style="background:#ffa726"></div> 100 – 200 ms</div>
+    <div class="leg-item"><div class="leg-line" style="background:#ef5350"></div> &gt; 200 ms</div>
+  </div>
+  <button id="btn-table" title="Show data table">&#9783; Table</button>
+
+  <!-- Data Table Modal -->
+  <div id="table-modal" style="display:none">
+    <div id="table-modal-box">
+      <div id="table-modal-header">
+        <span id="table-modal-title">Connection Data</span>
+        <button id="btn-table-close">&times;</button>
+      </div>
+      <div id="table-modal-body">
+        <table id="data-table">
+          <thead id="data-table-head"></thead>
+          <tbody id="data-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="map.js"></script>
+</body>
+</html>
