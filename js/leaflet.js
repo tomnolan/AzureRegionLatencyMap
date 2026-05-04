@@ -897,6 +897,22 @@ fetch('Data/lastUpdated.json')
   })
   .catch(() => {});
 
+fetch('Data/version.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    const el = document.getElementById('info-version-meta');
+    if (!el) return;
+    if (!data) { el.textContent = 'Unknown'; return; }
+    const parts = [];
+    if (data.version)     parts.push(`v${data.version}`);
+    if (data.lastUpdated) parts.push(`Updated: ${formatDateTime(data.lastUpdated)}`);
+    el.textContent = parts.join('  ·  ') || 'Unknown';
+  })
+  .catch(() => {
+    const el = document.getElementById('info-version-meta');
+    if (el) el.textContent = 'Unknown';
+  });
+
 document.getElementById('btn-info').addEventListener('click', () => {
   document.getElementById('info-modal').style.display = 'flex';
 });
