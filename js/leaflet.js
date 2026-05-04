@@ -256,7 +256,7 @@ function curvedLine(lon1, lat1, lon2, lat2, steps = 48, curvature = 0.15) {
   return coords;
 }
 
-function renderConnections() {
+function renderConnections(options = {}) {
   if (!lineLayerGroup) return;
 
   lineLayerGroup.clearLayers();
@@ -445,9 +445,23 @@ function renderConnections() {
     nodeLayerGroup.addLayer(marker);
   });
 
-  document.getElementById('stat-lines').textContent = filtered.length.toLocaleString();
+  document.getElementById('stat-lines').textContent = drawnPairs.size.toLocaleString();
   document.getElementById('stat-regions').textContent = activeRegionNames.size;
   currentFiltered = filtered.slice();
+
+  if (options.fitBounds && activeRegionNames.size > 0) {
+    const points = [];
+    activeRegionNames.forEach(name => {
+      const r = regionMap[name];
+      if (!r) return;
+      const lat = parseFloat(r.Latitude);
+      const lon = parseFloat(r.Longitude);
+      if (!isNaN(lat) && !isNaN(lon)) points.push([lat, lon]);
+    });
+    if (points.length > 0) {
+      map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 6 });
+    }
+  }
 }
 
 // ─────────────────────────────────────────────
@@ -937,12 +951,51 @@ document.getElementById('table-modal').addEventListener('click', (e) => {
   }
 });
 
+function copyTree(fromId, toId) {
+  const fromCbs = [...document.querySelectorAll(`#${fromId} .tree-region-cb`)];
+  const checkedValues = new Set(fromCbs.filter(cb => cb.checked).map(cb => cb.value));
+  const toCbs = [...document.querySelectorAll(`#${toId} .tree-region-cb`)];
+  toCbs.forEach(cb => {
+    cb.checked = checkedValues.has(cb.value);
+    cb.indeterminate = false;
+    updateAncestors(cb);
+  });
+}
+
+document.getElementById('btn-copy-src-to-dst').addEventListener('click', (e) => {
+  e.preventDefault();
+  copyTree('src-tree', 'dst-tree');
+});
+
+document.getElementById('btn-copy-dst-to-src').addEventListener('click', (e) => {
+  e.preventDefault();
+  copyTree('dst-tree', 'src-tree');
+});
+
 // ─────────────────────────────────────────────
 //  Filter button handlers
 // ─────────────────────────────────────────────
 
 document.getElementById('btn-apply').addEventListener('click', () => {
-  if (initialized) renderConnections();
+  if (!initialized) return;
+
+  const srcSet = getTreeSelectedRegions('src-tree');
+  const dstSet = getTreeSelectedRegions('dst-tree');
+  const autoMsgEl = document.getElementById('filter-auto-msg');
+
+  let autoMsg = null;
+  if (srcSet !== null && srcSet.size > 0 && dstSet !== null && dstSet.size === 0) {
+    copyTree('src-tree', 'dst-tree');
+    autoMsg = 'No destination selected — source selection was automatically applied to destination.';
+  } else if (dstSet !== null && dstSet.size > 0 && srcSet !== null && srcSet.size === 0) {
+    copyTree('dst-tree', 'src-tree');
+    autoMsg = 'No source selected — destination selection was automatically applied to source.';
+  }
+
+  autoMsgEl.textContent = autoMsg || '';
+  autoMsgEl.style.display = autoMsg ? '' : 'none';
+
+  renderConnections({ fitBounds: true });
 });
 
 document.getElementById('btn-reset').addEventListener('click', () => {
@@ -950,6 +1003,9 @@ document.getElementById('btn-reset').addEventListener('click', () => {
   document.getElementById('lat-max').value = '';
   resetTree('src-tree');
   resetTree('dst-tree');
+  const autoMsgEl = document.getElementById('filter-auto-msg');
+  autoMsgEl.textContent = '';
+  autoMsgEl.style.display = 'none';
   if (initialized) renderConnections();
 });
 

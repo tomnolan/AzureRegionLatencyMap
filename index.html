@@ -39,6 +39,10 @@
       <div class="tree-picker" id="src-tree"></div>
     </div>
 
+    <div class="tree-copy-link">
+      <a href="#" id="btn-copy-src-to-dst" title="Useful if you want to see all interconnections between a selection of regions">Copy source to destination</a>
+    </div>
+
     <div class="filter-group-header">Destination</div>
 
     <div class="filter-section">
@@ -46,12 +50,17 @@
       <div class="tree-picker" id="dst-tree"></div>
     </div>
 
+    <div class="tree-copy-link">
+      <a href="#" id="btn-copy-dst-to-src" title="Useful if you want to see all interconnections between a selection of regions">Copy destination to source</a>
+    </div>
+
+    <div class="filter-group-header">Latency</div>
     <div class="filter-section">
-      <label>Latency Range (ms)</label>
       <div class="range-row">
         <input type="number" id="lat-min" placeholder="Min" min="0" />
         <span>–</span>
         <input type="number" id="lat-max" placeholder="Max" min="0" />
+        <label> ms</label>
       </div>
     </div>
 
@@ -59,6 +68,7 @@
       <button class="btn btn-primary" id="btn-apply">Apply</button>
       <button class="btn btn-secondary" id="btn-reset">Reset</button>
     </div>
+    <div id="filter-auto-msg" style="display:none"></div>
 
   </div>
 

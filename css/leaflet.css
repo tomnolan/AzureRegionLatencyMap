@@ -62,7 +62,7 @@ body {
 #filter-body::-webkit-scrollbar-thumb { background: #0f3460; border-radius: 3px; }
 
 .filter-section {
-  margin-bottom: 16px;
+  margin-bottom: 0px;
 }
 
 .filter-section label {
@@ -75,6 +75,22 @@ body {
   margin-bottom: 6px;
 }
 
+.tree-copy-link {
+  padding: 0px 3px 6px;
+  text-align: right;
+}
+
+.tree-copy-link a {
+  font-size: 11px;
+  color: #6ab0d4;
+  text-decoration: none;
+  cursor: pointer;
+}
+.tree-copy-link a:hover {
+  color: #00d4ff;
+  text-decoration: underline;
+}
+
 .filter-group-header {
   font-size: 11px;
   font-weight: 700;
@@ -84,7 +100,7 @@ body {
   background: #0f3460;
   border-left: 3px solid #00d4ff;
   padding: 5px 10px;
-  margin: 6px -12px 12px;
+  margin: 20px -12px 12px;
 }
 
 /* Hierarchical tree picker */
@@ -191,7 +207,7 @@ body {
 .filter-actions {
   display: flex;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 25px;
   margin-bottom: 16px;
 }
 
@@ -220,11 +236,29 @@ body {
 
 .btn-secondary:hover { background: #255a8a; }
 
+#filter-auto-msg {
+  padding: 4px 2px 8px;
+  font-size: 11px;
+  color: #8cb8d8;
+  font-style: italic;
+  line-height: 1.4;
+}
+
 /* Latency range */
 .range-row {
   display: flex;
   gap: 6px;
   align-items: center;
+}
+
+.range-row label {
+  display: inline;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.8px;
+  color: #00d4ff;
+  margin: 0;
 }
 
 .range-row input[type="number"] {
