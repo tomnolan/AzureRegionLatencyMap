@@ -379,7 +379,7 @@ function renderConnections() {
         physicalLocation: r.PhysicalLocation,
         pairedRegion: r.PairedRegion,
         azCount: r.AvailabilityZoneCount,
-        specialAccess: r['Special Access'],
+        restrictedAccess: r['Special Access'],
         longitude: lon,
         latitude: lat,
       }
@@ -673,7 +673,7 @@ function showPointTooltip(e, props) {
     ['Location', `${props.latitude?.toFixed(4) ?? ''}, ${props.longitude?.toFixed(4) ?? ''}`],
     ['Paired Region', props.pairedRegion || '—'],
     ['Availability Zones', props.azCount || '—'],
-    ['Special Access', props.specialAccess === 'TRUE' ? 'Yes' : 'No'],
+    ['Restricted Access', props.restrictedAccess === 'TRUE' ? 'Yes' : 'No'],
   ];
   rows.forEach(([k, v]) => {
     const dk = document.createElement('span');
@@ -704,7 +704,7 @@ function showNodeDataInPathTooltip(e, props) {
     ['Location', `${props.latitude?.toFixed(4) ?? ''}, ${props.longitude?.toFixed(4) ?? ''}`],
     ['Paired Region', props.pairedRegion || '—'],
     ['Availability Zones', props.azCount || '—'],
-    ['Special Access', props.specialAccess === 'TRUE' ? 'Yes' : 'No'],
+    ['Restricted Access', props.restrictedAccess === 'TRUE' ? 'Yes' : 'No'],
   ];
   rows.forEach(([k, v]) => {
     const dk = document.createElement('span'); dk.className = 'tt-dk'; dk.textContent = k;
@@ -727,7 +727,7 @@ function pinNodeTooltip(e, props) {
     ['Location', `${props.latitude?.toFixed(4) ?? ''}, ${props.longitude?.toFixed(4) ?? ''}`],
     ['Paired Region', props.pairedRegion || '—'],
     ['Availability Zones', props.azCount || '—'],
-    ['Special Access', props.specialAccess === 'TRUE' ? 'Yes' : 'No'],
+    ['Restricted Access', props.restrictedAccess === 'TRUE' ? 'Yes' : 'No'],
   ];
   rows.forEach(([k, v]) => {
     const dk = document.createElement('span');

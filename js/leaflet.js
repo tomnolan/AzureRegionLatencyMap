@@ -1,18 +1,3 @@
-// ─────────────────────────────────────────────
-//  CSV parsing
-// ─────────────────────────────────────────────
-
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',');
-  return lines.slice(1).map(line => {
-    const vals = line.split(',');
-    const obj = {};
-    headers.forEach((h, i) => { obj[h.trim()] = (vals[i] || '').trim(); });
-    return obj;
-  });
-}
-
 // Data — populated by init()
 let regionRows = [];
 const regionMap = {};
@@ -120,7 +105,7 @@ function buildTreePicker(containerId) {
     ggCb.type = 'checkbox'; ggCb.className = 'tree-cb'; ggCb.checked = false;
 
     const ggToggle = document.createElement('span');
-    ggToggle.className = 'tree-toggle'; ggToggle.textContent = '▼';
+    ggToggle.className = 'tree-toggle'; ggToggle.textContent = '▶';
 
     const ggLabel = document.createElement('span');
     ggLabel.className = 'tree-node-label'; ggLabel.textContent = gg;
@@ -131,7 +116,7 @@ function buildTreePicker(containerId) {
     ggLi.appendChild(ggRow);
 
     const geoUl = document.createElement('ul');
-    geoUl.className = 'tree-children';
+    geoUl.className = 'tree-children tree-collapsed';
 
     Object.entries(geos).forEach(([geo, regions]) => {
       const geoLi = document.createElement('li');
@@ -389,7 +374,7 @@ function renderConnections() {
     const lon = parseFloat(r.Longitude);
     if (isNaN(lat) || isNaN(lon)) return;
 
-    const azCount = parseInt(r.AvailabilityZoneCount, 10) || 0;
+    const azCount = r.AvailabilityZoneCount || 0;
     const fillColor = azCount > 1 ? '#1955EC' : '#707687';
 
     const nodeProps = {
@@ -399,7 +384,7 @@ function renderConnections() {
       physicalLocation: r.PhysicalLocation,
       pairedRegion: r.PairedRegion,
       azCount: r.AvailabilityZoneCount,
-      specialAccess: r['Special Access'],
+      restrictedAccess: r.RestrictedAccess,
       longitude: lon,
       latitude: lat,
     };
@@ -407,8 +392,12 @@ function renderConnections() {
     const marker = L.circleMarker([lat, lon], {
       radius: 5,
       fillColor,
-      color: '#ffffff',
+      color: r.RestrictedAccess ? '#ff0000' : '#ffffff',
       weight: 1.5,
+      dashArray: r.RestrictedAccess ? '1,3' : null,
+      dashOffset: null,
+      lineCap: r.RestrictedAccess ? 'square' : 'round',
+      lineJoin: r.RestrictedAccess ? 'miter' : 'round',
       fillOpacity: 0.9,
       opacity: 1,
       interactive: true,
@@ -552,6 +541,54 @@ ttNodeClose.addEventListener('click', () => {
   renderConnections();
 });
 
+function makeDraggable(el, getGeo, setOffset) {
+  let dragging = false;
+  let didDrag  = false;
+  let startMouseX, startMouseY, startLeft, startTop;
+
+  el.addEventListener('mousedown', (e) => {
+    if (!el.classList.contains('tt-pinned')) return;
+    e.stopPropagation(); // always prevent map drag when tooltip is pinned
+    if (e.target.classList.contains('tt-close')) return;
+    dragging = true;
+    didDrag  = false;
+    startMouseX = e.clientX;
+    startMouseY = e.clientY;
+    startLeft = parseFloat(el.style.left) || 0;
+    startTop  = parseFloat(el.style.top)  || 0;
+    map.dragging.disable();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startMouseX;
+    const dy = e.clientY - startMouseY;
+    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) didDrag = true;
+    el.style.left = (startLeft + dx) + 'px';
+    el.style.top  = (startTop  + dy) + 'px';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    map.dragging.enable();
+    if (didDrag) {
+      const geo = getGeo();
+      if (geo) {
+        const pt = map.latLngToContainerPoint(geo);
+        if (pt) setOffset([parseFloat(el.style.left) - pt.x, parseFloat(el.style.top) - pt.y]);
+      }
+    }
+  });
+
+  el.addEventListener('click', (e) => {
+    if (didDrag) { e.stopPropagation(); didDrag = false; }
+  });
+}
+
+makeDraggable(tooltip,     () => pinnedTooltipGeo,     (o) => { pinnedTooltipOffset = o; });
+makeDraggable(tooltipNode, () => pinnedNodeTooltipGeo, (o) => { pinnedNodeTooltipOffset = o; });
+
 function bringToFront(el) {
   tooltip.style.zIndex     = el === tooltip     ? '1101' : '1100';
   tooltipNode.style.zIndex = el === tooltipNode ? '1101' : '1100';
@@ -563,7 +600,7 @@ function _buildNodeDetailRows(detailsEl, props) {
     ['Location', `${props.latitude?.toFixed(4) ?? ''}, ${props.longitude?.toFixed(4) ?? ''}`],
     ['Paired Region', props.pairedRegion || '—'],
     ['Availability Zones', props.azCount || '—'],
-    ['Special Access', props.specialAccess === 'TRUE' ? 'Yes' : 'No'],
+    ['Restricted Access', props.restrictedAccess === true ? 'Yes' : 'No'],
   ];
   rows.forEach(([k, v]) => {
     const dk = document.createElement('span'); dk.className = 'tt-dk'; dk.textContent = k;
@@ -600,6 +637,7 @@ function showTooltip(e, props, pinned = false) {
 
   tooltip.style.display = 'block';
   ttClose.style.display = pinned ? 'block' : 'none';
+  tooltip.classList.toggle('tt-pinned', pinned);
   bringToFront(tooltip);
   positionTooltip(e);
 
@@ -658,6 +696,7 @@ function pinNodeTooltip(e, props) {
   positionNodeTooltip(e);
   tooltipNode.style.display = 'block';
   ttNodeClose.style.display = 'block';
+  tooltipNode.classList.add('tt-pinned');
   bringToFront(tooltipNode);
   // Store geo anchor so tooltip tracks map panning
   pinnedNodeTooltipGeo = [props.latitude, props.longitude];
@@ -674,6 +713,7 @@ function pinNodeTooltip(e, props) {
 
 function hideNodeTooltip() {
   tooltipNode.style.display = 'none';
+  tooltipNode.classList.remove('tt-pinned');
   ttNodeClose.style.display = 'none';
   pinnedNodeTooltipGeo = null;
   pinnedNodeTooltipOffset = null;
@@ -722,6 +762,7 @@ function placeNodeTooltipAtGeo(latLon) {
 
 function hideTooltip() {
   tooltip.style.display = 'none';
+  tooltip.classList.remove('tt-pinned');
   ttClose.style.display = 'none';
   pinnedTooltipGeo = null;
   pinnedTooltipOffset = null;
@@ -741,6 +782,10 @@ function openTableModal() {
     ? `Connections for ${selectedNode}`
     : `All Connections (${rows.length.toLocaleString()})`;
   document.getElementById('table-modal-title').textContent = title;
+
+  const empty = rows.length === 0;
+  document.getElementById('table-empty-msg').style.display = empty ? 'block' : 'none';
+  document.getElementById('data-table').style.display      = empty ? 'none'  : '';
 
   const sources = [...new Set(rows.map(c => c.source))].sort();
   const dests   = [...new Set(rows.map(c => c.target))].sort();
@@ -791,9 +836,80 @@ function openTableModal() {
   });
 
   document.getElementById('table-modal').style.display = 'flex';
+  document.getElementById('btn-copy-csv').style.display = empty ? 'none' : '';
+
+  // Store current CSV data for the copy button
+  if (!empty) {
+    const csvLines = [['Source', ...dests].map(v => `"${v}"`).join(',')];
+    sources.forEach(src => {
+      const row = [src, ...dests.map(dst => {
+        const lat = lookup[src] && lookup[src][dst];
+        return lat !== undefined ? lat : '';
+      })];
+      csvLines.push(row.map((v, i) => i === 0 ? `"${v}"` : v).join(','));
+    });
+    document.getElementById('btn-copy-csv')._csvData = csvLines.join('\n');
+  }
 }
 
 document.getElementById('btn-table').addEventListener('click', openTableModal);
+
+document.getElementById('btn-copy-csv').addEventListener('click', () => {
+  const btn = document.getElementById('btn-copy-csv');
+  const csv = btn._csvData;
+  if (!csv) return;
+  navigator.clipboard.writeText(csv).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Data'; btn.classList.remove('copied'); }, 2000);
+  });
+});
+
+// ─────────────────────────────────────────────
+//  Info modal
+// ─────────────────────────────────────────────
+
+function formatDateTime(iso) {
+  if (!iso) return 'Unknown';
+  try {
+    return new Date(iso).toLocaleString(undefined, {
+      year: 'numeric', month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+  } catch { return iso; }
+}
+
+fetch('Data/lastUpdated.json')
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (!data) return;
+    const latencyMeta = document.getElementById('info-latency-meta');
+    const regionsMeta = document.getElementById('info-regions-meta');
+    if (latencyMeta) {
+      const parts = [];
+      if (data.LatencyDatasetDate) parts.push(`Dataset date: ${data.LatencyDatasetDate}`);
+      if (data.LatencyRetrievedAt) parts.push(`Last retrieved: ${formatDateTime(data.LatencyRetrievedAt)}`);
+      latencyMeta.textContent = parts.join('  ·  ');
+    }
+    if (regionsMeta && data.RegionsRetrievedAt) {
+      regionsMeta.textContent = `Last retrieved: ${formatDateTime(data.RegionsRetrievedAt)}`;
+    }
+  })
+  .catch(() => {});
+
+document.getElementById('btn-info').addEventListener('click', () => {
+  document.getElementById('info-modal').style.display = 'flex';
+});
+
+document.getElementById('btn-info-close').addEventListener('click', () => {
+  document.getElementById('info-modal').style.display = 'none';
+});
+
+document.getElementById('info-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('info-modal')) {
+    document.getElementById('info-modal').style.display = 'none';
+  }
+});
 
 document.getElementById('btn-table-close').addEventListener('click', () => {
   document.getElementById('table-modal').style.display = 'none';
@@ -826,16 +942,16 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 // ─────────────────────────────────────────────
 
 async function init() {
-  const [regionsCsv, latencyCsv] = await Promise.all([
-    fetch('Data/regions.csv').then(r => r.text()),
+  const [regionsJson, latencyCsv] = await Promise.all([
+    fetch('Data/regions.json').then(r => r.json()),
     fetch('Data/latency.csv').then(r => r.text()),
   ]);
 
-  regionRows = parseCSV(regionsCsv);
-  regionRows.forEach(r => { regionMap[r.DisplayName] = r; });
-
+  // Parse latency CSV first so we know which display names are covered
   const latencyLines = latencyCsv.trim().split('\n');
   const latencyHeaders = latencyLines[0].split(',').slice(1).map(h => h.trim());
+  const latencyNames = new Set(latencyHeaders);
+
   latencyLines.slice(1).forEach(line => {
     const vals = line.split(',');
     const source = vals[0].trim();
@@ -849,6 +965,30 @@ async function init() {
       connections.push({ source, target, latency: ms });
     });
   });
+
+  // Map JSON region objects to the internal shape used throughout the app,
+  // excluding regions with no coordinates or no latency data
+  regionRows = regionsJson
+    .filter(r => {
+      const lat = parseFloat(r.metadata?.latitude);
+      const lon = parseFloat(r.metadata?.longitude);
+      if (isNaN(lat) || isNaN(lon)) return false;
+      if (!latencyNames.has(r.displayName)) return false;
+      return true;
+    })
+    .map(r => ({
+      DisplayName:           r.displayName,
+      Geography:             r.metadata?.geography      || '',
+      GeographyGroup:        r.metadata?.geographyGroup || '',
+      Latitude:              r.metadata?.latitude       || '',
+      Longitude:             r.metadata?.longitude      || '',
+      PhysicalLocation:      r.metadata?.physicalLocation || '',
+      PairedRegion:          (r.metadata?.pairedRegion ?? []).map(p => p.name).join(', '),
+      AvailabilityZoneCount: (r.availabilityZoneMappings ?? []).length,
+      RestrictedAccess:      r.RestrictedAccessRegion === true,
+    }));
+
+  regionRows.forEach(r => { regionMap[r.DisplayName] = r; });
 
   buildTreePicker('src-tree');
   buildTreePicker('dst-tree');

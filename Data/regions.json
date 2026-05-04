@@ -1,1039 +1,2411 @@
 [
-    {
-        "Location":  "australiacentral",
-        "Type":  "Region",
-        "DisplayName":  "Australia Central",
-        "RegionalDisplayName":  "(Asia Pacific) Australia Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Australia",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "149.1244",
-        "Latitude":  "-35.3075",
-        "PhysicalLocation":  "Canberra",
-        "PairedRegion":  "australiacentral2",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "eastus-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "eastus-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "eastus-az3"
+      }
+    ],
+    "displayName": "East US",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "37.3719",
+      "longitude": "-79.8164",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westus",
+          "name": "westus"
+        }
+      ],
+      "physicalLocation": "Virginia",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "australiacentral2",
-        "Type":  "Region",
-        "DisplayName":  "Australia Central 2",
-        "RegionalDisplayName":  "(Asia Pacific) Australia Central 2",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Australia",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "149.1244",
-        "Latitude":  "-35.3075",
-        "PhysicalLocation":  "Canberra",
-        "PairedRegion":  "australiacentral",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "eastus",
+    "regionalDisplayName": "(US) East US",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "westus2-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "westus2-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "westus2-az3"
+      }
+    ],
+    "displayName": "West US 2",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westus2",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "47.233",
+      "longitude": "-119.852",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westcentralus",
+          "name": "westcentralus"
+        }
+      ],
+      "physicalLocation": "Washington",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "australiaeast",
-        "Type":  "Region",
-        "DisplayName":  "Australia East",
-        "RegionalDisplayName":  "(Asia Pacific) Australia East",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Australia",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "151.2094",
-        "Latitude":  "-33.86",
-        "PhysicalLocation":  "New South Wales",
-        "PairedRegion":  "australiasoutheast",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "westus2",
+    "regionalDisplayName": "(US) West US 2",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "australiaeast-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "australiaeast-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "australiaeast-az3"
+      }
+    ],
+    "displayName": "Australia East",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiaeast",
+    "metadata": {
+      "geography": "Australia",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "-33.86",
+      "longitude": "151.2094",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiasoutheast",
+          "name": "australiasoutheast"
+        }
+      ],
+      "physicalLocation": "New South Wales",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "australiasoutheast",
-        "Type":  "Region",
-        "DisplayName":  "Australia Southeast",
-        "RegionalDisplayName":  "(Asia Pacific) Australia Southeast",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Australia",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "144.9631",
-        "Latitude":  "-37.8136",
-        "PhysicalLocation":  "Victoria",
-        "PairedRegion":  "australiaeast",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "australiaeast",
+    "regionalDisplayName": "(Asia Pacific) Australia East",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "southeastasia-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "southeastasia-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "southeastasia-az3"
+      }
+    ],
+    "displayName": "Southeast Asia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southeastasia",
+    "metadata": {
+      "geography": "Asia Pacific",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "1.283",
+      "longitude": "103.833",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastasia",
+          "name": "eastasia"
+        }
+      ],
+      "physicalLocation": "Singapore",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "austriaeast",
-        "Type":  "Region",
-        "DisplayName":  "Austria East",
-        "RegionalDisplayName":  "(Europe) Austria East",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Austria",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "16.3727779",
-        "Latitude":  "48.2092056",
-        "PhysicalLocation":  "Vienna",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "southeastasia",
+    "regionalDisplayName": "(Asia Pacific) Southeast Asia",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "northeurope-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "northeurope-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "northeurope-az3"
+      }
+    ],
+    "displayName": "North Europe",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/northeurope",
+    "metadata": {
+      "geography": "Europe",
+      "geographyGroup": "Europe",
+      "latitude": "53.3478",
+      "longitude": "-6.2597",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westeurope",
+          "name": "westeurope"
+        }
+      ],
+      "physicalLocation": "Ireland",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "belgiumcentral",
-        "Type":  "Region",
-        "DisplayName":  "Belgium Central",
-        "RegionalDisplayName":  "(Europe) Belgium Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Belgium",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "4.355707169",
-        "Latitude":  "50.84553528",
-        "PhysicalLocation":  "Brussels",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "northeurope",
+    "regionalDisplayName": "(Europe) North Europe",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "swedencentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "swedencentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "swedencentral-az3"
+      }
+    ],
+    "displayName": "Sweden Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/swedencentral",
+    "metadata": {
+      "geography": "Sweden",
+      "geographyGroup": "Europe",
+      "latitude": "60.67488",
+      "longitude": "17.14127",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/swedensouth",
+          "name": "swedensouth"
+        }
+      ],
+      "physicalLocation": "GΣvle",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "brazilsouth",
-        "Type":  "Region",
-        "DisplayName":  "Brazil South",
-        "RegionalDisplayName":  "(South America) Brazil South",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Brazil",
-        "GeographyGroup":  "South America",
-        "Longitude":  "-46.633",
-        "Latitude":  "-23.55",
-        "PhysicalLocation":  "Sao Paulo State",
-        "PairedRegion":  "southcentralus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "swedencentral",
+    "regionalDisplayName": "(Europe) Sweden Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "westeurope-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "westeurope-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "westeurope-az3"
+      }
+    ],
+    "displayName": "West Europe",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westeurope",
+    "metadata": {
+      "geography": "Europe",
+      "geographyGroup": "Europe",
+      "latitude": "52.3667",
+      "longitude": "4.9",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/northeurope",
+          "name": "northeurope"
+        }
+      ],
+      "physicalLocation": "Netherlands",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "brazilsoutheast",
-        "Type":  "Region",
-        "DisplayName":  "Brazil Southeast",
-        "RegionalDisplayName":  "(South America) Brazil Southeast",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Brazil",
-        "GeographyGroup":  "South America",
-        "Longitude":  "-43.2075",
-        "Latitude":  "-22.90278",
-        "PhysicalLocation":  "Rio",
-        "PairedRegion":  "brazilsouth",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "westeurope",
+    "regionalDisplayName": "(Europe) West Europe",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "uksouth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "uksouth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "uksouth-az3"
+      }
+    ],
+    "displayName": "UK South",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uksouth",
+    "metadata": {
+      "geography": "United Kingdom",
+      "geographyGroup": "UK",
+      "latitude": "50.941",
+      "longitude": "-0.799",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/ukwest",
+          "name": "ukwest"
+        }
+      ],
+      "physicalLocation": "London",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "canadacentral",
-        "Type":  "Region",
-        "DisplayName":  "Canada Central",
-        "RegionalDisplayName":  "(Canada) Canada Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Canada",
-        "GeographyGroup":  "Canada",
-        "Longitude":  "-79.383",
-        "Latitude":  "43.653",
-        "PhysicalLocation":  "Toronto",
-        "PairedRegion":  "canadaeast",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "uksouth",
+    "regionalDisplayName": "(UK) UK South",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "centralus-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "centralus-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "centralus-az3"
+      }
+    ],
+    "displayName": "Central US",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centralus",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "41.5908",
+      "longitude": "-93.6208",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus2",
+          "name": "eastus2"
+        }
+      ],
+      "physicalLocation": "Iowa",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "canadaeast",
-        "Type":  "Region",
-        "DisplayName":  "Canada East",
-        "RegionalDisplayName":  "(Canada) Canada East",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Canada",
-        "GeographyGroup":  "Canada",
-        "Longitude":  "-71.217",
-        "Latitude":  "46.817",
-        "PhysicalLocation":  "Quebec",
-        "PairedRegion":  "canadacentral",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "centralus",
+    "regionalDisplayName": "(US) Central US",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "southafricanorth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "southafricanorth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "southafricanorth-az3"
+      }
+    ],
+    "displayName": "South Africa North",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southafricanorth",
+    "metadata": {
+      "geography": "South Africa",
+      "geographyGroup": "Africa",
+      "latitude": "-25.73134",
+      "longitude": "28.21837",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southafricawest",
+          "name": "southafricawest"
+        }
+      ],
+      "physicalLocation": "Johannesburg",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "centralindia",
-        "Type":  "Region",
-        "DisplayName":  "Central India",
-        "RegionalDisplayName":  "(Asia Pacific) Central India",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "India",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "73.9197",
-        "Latitude":  "18.5822",
-        "PhysicalLocation":  "Pune",
-        "PairedRegion":  "southindia",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "southafricanorth",
+    "regionalDisplayName": "(Africa) South Africa North",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "centralindia-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "centralindia-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "centralindia-az3"
+      }
+    ],
+    "displayName": "Central India",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centralindia",
+    "metadata": {
+      "geography": "India",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "18.5822",
+      "longitude": "73.9197",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southindia",
+          "name": "southindia"
+        }
+      ],
+      "physicalLocation": "Pune",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "centralus",
-        "Type":  "Region",
-        "DisplayName":  "Central US",
-        "RegionalDisplayName":  "(US) Central US",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-93.6208",
-        "Latitude":  "41.5908",
-        "PhysicalLocation":  "Iowa",
-        "PairedRegion":  "eastus2",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "centralindia",
+    "regionalDisplayName": "(Asia Pacific) Central India",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "eastasia-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "eastasia-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "eastasia-az3"
+      }
+    ],
+    "displayName": "East Asia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastasia",
+    "metadata": {
+      "geography": "Asia Pacific",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "22.267",
+      "longitude": "114.188",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southeastasia",
+          "name": "southeastasia"
+        }
+      ],
+      "physicalLocation": "Hong Kong",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "centraluseuap",
-        "Type":  "Region",
-        "DisplayName":  "Central US EUAP",
-        "RegionalDisplayName":  "(US) Central US EUAP",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Canary (US)",
-        "GeographyGroup":  "US",
-        "Longitude":  "-93.6208",
-        "Latitude":  "41.5908",
-        "PhysicalLocation":  "",
-        "PairedRegion":  "eastus2euap",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "eastasia",
+    "regionalDisplayName": "(Asia Pacific) East Asia",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "indonesiacentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "indonesiacentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "indonesiacentral-az3"
+      }
+    ],
+    "displayName": "Indonesia Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/indonesiacentral",
+    "metadata": {
+      "geography": "Indonesia",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "-6.2",
+      "longitude": "106.816666",
+      "pairedRegion": [],
+      "physicalLocation": "Jakarta",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "chilecentral",
-        "Type":  "Region",
-        "DisplayName":  "Chile Central",
-        "RegionalDisplayName":  "(South America) Chile Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Chile",
-        "GeographyGroup":  "South America",
-        "Longitude":  "-70.673676",
-        "Latitude":  "-33.447487",
-        "PhysicalLocation":  "Santiago",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "indonesiacentral",
+    "regionalDisplayName": "(Asia Pacific) Indonesia Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "japaneast-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "japaneast-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "japaneast-az3"
+      }
+    ],
+    "displayName": "Japan East",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/japaneast",
+    "metadata": {
+      "geography": "Japan",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "35.68",
+      "longitude": "139.77",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/japanwest",
+          "name": "japanwest"
+        }
+      ],
+      "physicalLocation": "Tokyo, Saitama",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "eastasia",
-        "Type":  "Region",
-        "DisplayName":  "East Asia",
-        "RegionalDisplayName":  "(Asia Pacific) East Asia",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Asia Pacific",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "114.188",
-        "Latitude":  "22.267",
-        "PhysicalLocation":  "Hong Kong",
-        "PairedRegion":  "southeastasia",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "japaneast",
+    "regionalDisplayName": "(Asia Pacific) Japan East",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "japanwest-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "japanwest-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "japanwest-az3"
+      }
+    ],
+    "displayName": "Japan West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/japanwest",
+    "metadata": {
+      "geography": "Japan",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "34.6939",
+      "longitude": "135.5022",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/japaneast",
+          "name": "japaneast"
+        }
+      ],
+      "physicalLocation": "Osaka",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "eastus",
-        "Type":  "Region",
-        "DisplayName":  "East US",
-        "RegionalDisplayName":  "(US) East US",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-79.8164",
-        "Latitude":  "37.3719",
-        "PhysicalLocation":  "Virginia",
-        "PairedRegion":  "westus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "japanwest",
+    "regionalDisplayName": "(Asia Pacific) Japan West",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "koreacentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "koreacentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "koreacentral-az3"
+      }
+    ],
+    "displayName": "Korea Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/koreacentral",
+    "metadata": {
+      "geography": "Korea",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "37.5665",
+      "longitude": "126.978",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/koreasouth",
+          "name": "koreasouth"
+        }
+      ],
+      "physicalLocation": "Seoul",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "eastus2",
-        "Type":  "Region",
-        "DisplayName":  "East US 2",
-        "RegionalDisplayName":  "(US) East US 2",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-78.3889",
-        "Latitude":  "36.6681",
-        "PhysicalLocation":  "Virginia",
-        "PairedRegion":  "centralus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "koreacentral",
+    "regionalDisplayName": "(Asia Pacific) Korea Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "malaysiawest-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "malaysiawest-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "malaysiawest-az3"
+      }
+    ],
+    "displayName": "Malaysia West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/malaysiawest",
+    "metadata": {
+      "geography": "Malaysia",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "3.140853",
+      "longitude": "101.693207",
+      "pairedRegion": [],
+      "physicalLocation": "Kuala Lumpur",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "eastus2euap",
-        "Type":  "Region",
-        "DisplayName":  "East US 2 EUAP",
-        "RegionalDisplayName":  "(US) East US 2 EUAP",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Canary (US)",
-        "GeographyGroup":  "US",
-        "Longitude":  "-78.3889",
-        "Latitude":  "36.6681",
-        "PhysicalLocation":  "",
-        "PairedRegion":  "centraluseuap",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "4"
+    "name": "malaysiawest",
+    "regionalDisplayName": "(Asia Pacific) Malaysia West",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "newzealandnorth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "newzealandnorth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "newzealandnorth-az3"
+      }
+    ],
+    "displayName": "New Zealand North",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/newzealandnorth",
+    "metadata": {
+      "geography": "New Zealand",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "-36.84853",
+      "longitude": "174.76349",
+      "pairedRegion": [],
+      "physicalLocation": "Auckland",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "eastusstg",
-        "Type":  "Region",
-        "DisplayName":  "East US STG",
-        "RegionalDisplayName":  "(US) East US STG",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Stage (US)",
-        "GeographyGroup":  "US",
-        "Longitude":  "-79.8164",
-        "Latitude":  "37.3719",
-        "PhysicalLocation":  "Virginia",
-        "PairedRegion":  "southcentralusstg",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "newzealandnorth",
+    "regionalDisplayName": "(Asia Pacific) New Zealand North",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "canadacentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "canadacentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "canadacentral-az3"
+      }
+    ],
+    "displayName": "Canada Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/canadacentral",
+    "metadata": {
+      "geography": "Canada",
+      "geographyGroup": "Canada",
+      "latitude": "43.653",
+      "longitude": "-79.383",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/canadaeast",
+          "name": "canadaeast"
+        }
+      ],
+      "physicalLocation": "Toronto",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "francecentral",
-        "Type":  "Region",
-        "DisplayName":  "France Central",
-        "RegionalDisplayName":  "(Europe) France Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "France",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "2.373",
-        "Latitude":  "46.3772",
-        "PhysicalLocation":  "Paris",
-        "PairedRegion":  "francesouth",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "canadacentral",
+    "regionalDisplayName": "(Canada) Canada Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "austriaeast-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "austriaeast-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "austriaeast-az3"
+      }
+    ],
+    "displayName": "Austria East",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/austriaeast",
+    "metadata": {
+      "geography": "Austria",
+      "geographyGroup": "Europe",
+      "latitude": "48.2092056",
+      "longitude": "16.3727779",
+      "pairedRegion": [],
+      "physicalLocation": "Vienna",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "francesouth",
-        "Type":  "Region",
-        "DisplayName":  "France South",
-        "RegionalDisplayName":  "(Europe) France South",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "France",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "2.1972",
-        "Latitude":  "43.8345",
-        "PhysicalLocation":  "Marseille",
-        "PairedRegion":  "francecentral",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "austriaeast",
+    "regionalDisplayName": "(Europe) Austria East",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "belgiumcentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "belgiumcentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "belgiumcentral-az3"
+      }
+    ],
+    "displayName": "Belgium Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/belgiumcentral",
+    "metadata": {
+      "geography": "Belgium",
+      "geographyGroup": "Europe",
+      "latitude": "50.84553528",
+      "longitude": "4.355707169",
+      "pairedRegion": [],
+      "physicalLocation": "Brussels",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "germanynorth",
-        "Type":  "Region",
-        "DisplayName":  "Germany North",
-        "RegionalDisplayName":  "(Europe) Germany North",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Germany",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "8.806422",
-        "Latitude":  "53.073635",
-        "PhysicalLocation":  "Berlin",
-        "PairedRegion":  "germanywestcentral",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "belgiumcentral",
+    "regionalDisplayName": "(Europe) Belgium Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "denmarkeast-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "denmarkeast-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "denmarkeast-az3"
+      }
+    ],
+    "displayName": "Denmark East",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/denmarkeast",
+    "metadata": {
+      "geography": "Denmark",
+      "geographyGroup": "Europe",
+      "latitude": "55.67594",
+      "longitude": "12.56553",
+      "pairedRegion": [],
+      "physicalLocation": "Copenhagen",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "germanywestcentral",
-        "Type":  "Region",
-        "DisplayName":  "Germany West Central",
-        "RegionalDisplayName":  "(Europe) Germany West Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Germany",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "8.682127",
-        "Latitude":  "50.110924",
-        "PhysicalLocation":  "Frankfurt",
-        "PairedRegion":  "germanynorth",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "denmarkeast",
+    "regionalDisplayName": "(Europe) Denmark East",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "francecentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "francecentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "francecentral-az3"
+      }
+    ],
+    "displayName": "France Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/francecentral",
+    "metadata": {
+      "geography": "France",
+      "geographyGroup": "Europe",
+      "latitude": "46.3772",
+      "longitude": "2.373",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/francesouth",
+          "name": "francesouth"
+        }
+      ],
+      "physicalLocation": "Paris",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "indonesiacentral",
-        "Type":  "Region",
-        "DisplayName":  "Indonesia Central",
-        "RegionalDisplayName":  "(Asia Pacific) Indonesia Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Indonesia",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "106.816666",
-        "Latitude":  "-6.2",
-        "PhysicalLocation":  "Jakarta",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "francecentral",
+    "regionalDisplayName": "(Europe) France Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "germanywestcentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "germanywestcentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "germanywestcentral-az3"
+      }
+    ],
+    "displayName": "Germany West Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/germanywestcentral",
+    "metadata": {
+      "geography": "Germany",
+      "geographyGroup": "Europe",
+      "latitude": "50.110924",
+      "longitude": "8.682127",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/germanynorth",
+          "name": "germanynorth"
+        }
+      ],
+      "physicalLocation": "Frankfurt",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "israelcentral",
-        "Type":  "Region",
-        "DisplayName":  "Israel Central",
-        "RegionalDisplayName":  "(Middle East) Israel Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Israel",
-        "GeographyGroup":  "Middle East",
-        "Longitude":  "33.4506633",
-        "Latitude":  "31.2655698",
-        "PhysicalLocation":  "Israel",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "germanywestcentral",
+    "regionalDisplayName": "(Europe) Germany West Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "italynorth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "italynorth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "italynorth-az3"
+      }
+    ],
+    "displayName": "Italy North",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/italynorth",
+    "metadata": {
+      "geography": "Italy",
+      "geographyGroup": "Europe",
+      "latitude": "45.46888",
+      "longitude": "9.18109",
+      "pairedRegion": [],
+      "physicalLocation": "Milan",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "italynorth",
-        "Type":  "Region",
-        "DisplayName":  "Italy North",
-        "RegionalDisplayName":  "(Europe) Italy North",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Italy",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "9.18109",
-        "Latitude":  "45.46888",
-        "PhysicalLocation":  "Milan",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "italynorth",
+    "regionalDisplayName": "(Europe) Italy North",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "norwayeast-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "norwayeast-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "norwayeast-az3"
+      }
+    ],
+    "displayName": "Norway East",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/norwayeast",
+    "metadata": {
+      "geography": "Norway",
+      "geographyGroup": "Europe",
+      "latitude": "59.913868",
+      "longitude": "10.752245",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/norwaywest",
+          "name": "norwaywest"
+        }
+      ],
+      "physicalLocation": "Norway",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "japaneast",
-        "Type":  "Region",
-        "DisplayName":  "Japan East",
-        "RegionalDisplayName":  "(Asia Pacific) Japan East",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Japan",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "139.77",
-        "Latitude":  "35.68",
-        "PhysicalLocation":  "Tokyo",
-        "PairedRegion":  "Saitama",
-        "Special Access":  "japanwest",
-        "AvailabilityZoneSupport":  "",
-        "AvailabilityZoneCount":  "TRUE"
+    "name": "norwayeast",
+    "regionalDisplayName": "(Europe) Norway East",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "polandcentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "polandcentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "polandcentral-az3"
+      }
+    ],
+    "displayName": "Poland Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/polandcentral",
+    "metadata": {
+      "geography": "Poland",
+      "geographyGroup": "Europe",
+      "latitude": "52.23334",
+      "longitude": "21.01666",
+      "pairedRegion": [],
+      "physicalLocation": "Warsaw",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "japanwest",
-        "Type":  "Region",
-        "DisplayName":  "Japan West",
-        "RegionalDisplayName":  "(Asia Pacific) Japan West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Japan",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "135.5022",
-        "Latitude":  "34.6939",
-        "PhysicalLocation":  "Osaka",
-        "PairedRegion":  "japaneast",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "polandcentral",
+    "regionalDisplayName": "(Europe) Poland Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "spaincentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "spaincentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "spaincentral-az3"
+      }
+    ],
+    "displayName": "Spain Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/spaincentral",
+    "metadata": {
+      "geography": "Spain",
+      "geographyGroup": "Europe",
+      "latitude": "40.4259",
+      "longitude": "3.4209",
+      "pairedRegion": [],
+      "physicalLocation": "Madrid",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "jioindiacentral",
-        "Type":  "Region",
-        "DisplayName":  "Jio India Central",
-        "RegionalDisplayName":  "(Asia Pacific) Jio India Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "India",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "79.08886",
-        "Latitude":  "21.146633",
-        "PhysicalLocation":  "Nagpur",
-        "PairedRegion":  "jioindiawest",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "spaincentral",
+    "regionalDisplayName": "(Europe) Spain Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "switzerlandnorth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "switzerlandnorth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "switzerlandnorth-az3"
+      }
+    ],
+    "displayName": "Switzerland North",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/switzerlandnorth",
+    "metadata": {
+      "geography": "Switzerland",
+      "geographyGroup": "Europe",
+      "latitude": "47.451542",
+      "longitude": "8.564572",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/switzerlandwest",
+          "name": "switzerlandwest"
+        }
+      ],
+      "physicalLocation": "Zurich",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "jioindiawest",
-        "Type":  "Region",
-        "DisplayName":  "Jio India West",
-        "RegionalDisplayName":  "(Asia Pacific) Jio India West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "India",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "70.05773",
-        "Latitude":  "22.470701",
-        "PhysicalLocation":  "Jamnagar",
-        "PairedRegion":  "jioindiacentral",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "switzerlandnorth",
+    "regionalDisplayName": "(Europe) Switzerland North",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "mexicocentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "mexicocentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "mexicocentral-az3"
+      }
+    ],
+    "displayName": "Mexico Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/mexicocentral",
+    "metadata": {
+      "geography": "Mexico",
+      "geographyGroup": "Mexico",
+      "latitude": "20.588818",
+      "longitude": "-100.389888",
+      "pairedRegion": [],
+      "physicalLocation": "QuerΘtaro State",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "koreacentral",
-        "Type":  "Region",
-        "DisplayName":  "Korea Central",
-        "RegionalDisplayName":  "(Asia Pacific) Korea Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Korea",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "126.978",
-        "Latitude":  "37.5665",
-        "PhysicalLocation":  "Seoul",
-        "PairedRegion":  "koreasouth",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "mexicocentral",
+    "regionalDisplayName": "(Mexico) Mexico Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "uaenorth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "uaenorth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "uaenorth-az3"
+      }
+    ],
+    "displayName": "UAE North",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uaenorth",
+    "metadata": {
+      "geography": "UAE",
+      "geographyGroup": "Middle East",
+      "latitude": "25.266666",
+      "longitude": "55.316666",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uaecentral",
+          "name": "uaecentral"
+        }
+      ],
+      "physicalLocation": "Dubai",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "koreasouth",
-        "Type":  "Region",
-        "DisplayName":  "Korea South",
-        "RegionalDisplayName":  "(Asia Pacific) Korea South",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Korea",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "129.0756",
-        "Latitude":  "35.1796",
-        "PhysicalLocation":  "Busan",
-        "PairedRegion":  "koreacentral",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "uaenorth",
+    "regionalDisplayName": "(Middle East) UAE North",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "brazilsouth-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "brazilsouth-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "brazilsouth-az3"
+      }
+    ],
+    "displayName": "Brazil South",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/brazilsouth",
+    "metadata": {
+      "geography": "Brazil",
+      "geographyGroup": "South America",
+      "latitude": "-23.55",
+      "longitude": "-46.633",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southcentralus",
+          "name": "southcentralus"
+        }
+      ],
+      "physicalLocation": "Sao Paulo State",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "malaysiawest",
-        "Type":  "Region",
-        "DisplayName":  "Malaysia West",
-        "RegionalDisplayName":  "(Asia Pacific) Malaysia West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Malaysia",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "101.693207",
-        "Latitude":  "3.140853",
-        "PhysicalLocation":  "Kuala Lumpur",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "brazilsouth",
+    "regionalDisplayName": "(South America) Brazil South",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "chilecentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "chilecentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "chilecentral-az3"
+      }
+    ],
+    "displayName": "Chile Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/chilecentral",
+    "metadata": {
+      "geography": "Chile",
+      "geographyGroup": "South America",
+      "latitude": "-33.447487",
+      "longitude": "-70.673676",
+      "pairedRegion": [],
+      "physicalLocation": "Santiago",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "mexicocentral",
-        "Type":  "Region",
-        "DisplayName":  "Mexico Central",
-        "RegionalDisplayName":  "(Mexico) Mexico Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Mexico",
-        "GeographyGroup":  "Mexico",
-        "Longitude":  "-100.389888",
-        "Latitude":  "20.588818",
-        "PhysicalLocation":  "Querétaro State",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "chilecentral",
+    "regionalDisplayName": "(South America) Chile Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "eastus2euap-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "eastus2euap-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "eastus2euap-az3"
+      },
+      {
+        "logicalZone": "4",
+        "physicalZone": "eastus2euap-az4"
+      }
+    ],
+    "displayName": "East US 2 EUAP",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus2euap",
+    "metadata": {
+      "geography": "Canary (US)",
+      "geographyGroup": "US",
+      "latitude": "36.6681",
+      "longitude": "-78.3889",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centraluseuap",
+          "name": "centraluseuap"
+        }
+      ],
+      "physicalLocation": "",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "newzealandnorth",
-        "Type":  "Region",
-        "DisplayName":  "New Zealand North",
-        "RegionalDisplayName":  "(Asia Pacific) New Zealand North",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "New Zealand",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "174.76349",
-        "Latitude":  "-36.84853",
-        "PhysicalLocation":  "Auckland",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "eastus2euap",
+    "regionalDisplayName": "(US) East US 2 EUAP",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "israelcentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "israelcentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "israelcentral-az3"
+      }
+    ],
+    "displayName": "Israel Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/israelcentral",
+    "metadata": {
+      "geography": "Israel",
+      "geographyGroup": "Middle East",
+      "latitude": "31.2655698",
+      "longitude": "33.4506633",
+      "pairedRegion": [],
+      "physicalLocation": "Israel",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "northcentralus",
-        "Type":  "Region",
-        "DisplayName":  "North Central US",
-        "RegionalDisplayName":  "(US) North Central US",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-87.6278",
-        "Latitude":  "41.8819",
-        "PhysicalLocation":  "Illinois",
-        "PairedRegion":  "southcentralus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "israelcentral",
+    "regionalDisplayName": "(Middle East) Israel Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "qatarcentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "qatarcentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "qatarcentral-az3"
+      }
+    ],
+    "displayName": "Qatar Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/qatarcentral",
+    "metadata": {
+      "geography": "Qatar",
+      "geographyGroup": "Middle East",
+      "latitude": "25.551462",
+      "longitude": "51.439327",
+      "pairedRegion": [],
+      "physicalLocation": "Doha",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
     },
-    {
-        "Location":  "northeurope",
-        "Type":  "Region",
-        "DisplayName":  "North Europe",
-        "RegionalDisplayName":  "(Europe) North Europe",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Europe",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "-6.2597",
-        "Latitude":  "53.3478",
-        "PhysicalLocation":  "Ireland",
-        "PairedRegion":  "westeurope",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "qatarcentral",
+    "regionalDisplayName": "(Middle East) Qatar Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Central US (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centralusstage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "norwayeast",
-        "Type":  "Region",
-        "DisplayName":  "Norway East",
-        "RegionalDisplayName":  "(Europe) Norway East",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Norway",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "10.752245",
-        "Latitude":  "59.913868",
-        "PhysicalLocation":  "Norway",
-        "PairedRegion":  "norwaywest",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "centralusstage",
+    "regionalDisplayName": "(US) Central US (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "East US (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastusstage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "norwaywest",
-        "Type":  "Region",
-        "DisplayName":  "Norway West",
-        "RegionalDisplayName":  "(Europe) Norway West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Norway",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "5.733107",
-        "Latitude":  "58.969975",
-        "PhysicalLocation":  "Norway",
-        "PairedRegion":  "norwayeast",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "eastusstage",
+    "regionalDisplayName": "(US) East US (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "East US 2 (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus2stage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "polandcentral",
-        "Type":  "Region",
-        "DisplayName":  "Poland Central",
-        "RegionalDisplayName":  "(Europe) Poland Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Poland",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "21.01666",
-        "Latitude":  "52.23334",
-        "PhysicalLocation":  "Warsaw",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "eastus2stage",
+    "regionalDisplayName": "(US) East US 2 (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "North Central US (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/northcentralusstage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "qatarcentral",
-        "Type":  "Region",
-        "DisplayName":  "Qatar Central",
-        "RegionalDisplayName":  "(Middle East) Qatar Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Qatar",
-        "GeographyGroup":  "Middle East",
-        "Longitude":  "51.439327",
-        "Latitude":  "25.551462",
-        "PhysicalLocation":  "Doha",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "northcentralusstage",
+    "regionalDisplayName": "(US) North Central US (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "South Central US (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southcentralusstage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "southafricanorth",
-        "Type":  "Region",
-        "DisplayName":  "South Africa North",
-        "RegionalDisplayName":  "(Africa) South Africa North",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "South Africa",
-        "GeographyGroup":  "Africa",
-        "Longitude":  "28.21837",
-        "Latitude":  "-25.73134",
-        "PhysicalLocation":  "Johannesburg",
-        "PairedRegion":  "southafricawest",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "southcentralusstage",
+    "regionalDisplayName": "(US) South Central US (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "West US (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westusstage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "southafricawest",
-        "Type":  "Region",
-        "DisplayName":  "South Africa West",
-        "RegionalDisplayName":  "(Africa) South Africa West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "South Africa",
-        "GeographyGroup":  "Africa",
-        "Longitude":  "18.843266",
-        "Latitude":  "-34.075691",
-        "PhysicalLocation":  "Cape Town",
-        "PairedRegion":  "southafricanorth",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "westusstage",
+    "regionalDisplayName": "(US) West US (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "West US 2 (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westus2stage",
+    "metadata": {
+      "geography": "usa",
+      "geographyGroup": "US",
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "southcentralus",
-        "Type":  "Region",
-        "DisplayName":  "South Central US",
-        "RegionalDisplayName":  "(US) South Central US",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-98.5",
-        "Latitude":  "29.4167",
-        "PhysicalLocation":  "Texas",
-        "PairedRegion":  "northcentralus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "westus2stage",
+    "regionalDisplayName": "(US) West US 2 (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Asia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/asia",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "southcentralusstg",
-        "Type":  "Region",
-        "DisplayName":  "South Central US STG",
-        "RegionalDisplayName":  "(US) South Central US STG",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Stage (US)",
-        "GeographyGroup":  "US",
-        "Longitude":  "-98.5",
-        "Latitude":  "29.4167",
-        "PhysicalLocation":  "Texas",
-        "PairedRegion":  "eastusstg",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "asia",
+    "regionalDisplayName": "Asia",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Asia Pacific",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/asiapacific",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "southeastasia",
-        "Type":  "Region",
-        "DisplayName":  "Southeast Asia",
-        "RegionalDisplayName":  "(Asia Pacific) Southeast Asia",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Asia Pacific",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "103.833",
-        "Latitude":  "1.283",
-        "PhysicalLocation":  "Singapore",
-        "PairedRegion":  "eastasia",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "asiapacific",
+    "regionalDisplayName": "Asia Pacific",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Australia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australia",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "southindia",
-        "Type":  "Region",
-        "DisplayName":  "South India",
-        "RegionalDisplayName":  "(Asia Pacific) South India",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "India",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "80.1636",
-        "Latitude":  "12.9822",
-        "PhysicalLocation":  "Chennai",
-        "PairedRegion":  "centralindia",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "australia",
+    "regionalDisplayName": "Australia",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Brazil",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/brazil",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "spaincentral",
-        "Type":  "Region",
-        "DisplayName":  "Spain Central",
-        "RegionalDisplayName":  "(Europe) Spain Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Spain",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "3.4209",
-        "Latitude":  "40.4259",
-        "PhysicalLocation":  "Madrid",
-        "PairedRegion":  "",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "brazil",
+    "regionalDisplayName": "Brazil",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Canada",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/canada",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "swedencentral",
-        "Type":  "Region",
-        "DisplayName":  "Sweden Central",
-        "RegionalDisplayName":  "(Europe) Sweden Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Sweden",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "17.14127",
-        "Latitude":  "60.67488",
-        "PhysicalLocation":  "Gävle",
-        "PairedRegion":  "swedensouth",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "canada",
+    "regionalDisplayName": "Canada",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Europe",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/europe",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "switzerlandnorth",
-        "Type":  "Region",
-        "DisplayName":  "Switzerland North",
-        "RegionalDisplayName":  "(Europe) Switzerland North",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Switzerland",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "8.564572",
-        "Latitude":  "47.451542",
-        "PhysicalLocation":  "Zurich",
-        "PairedRegion":  "switzerlandwest",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "europe",
+    "regionalDisplayName": "Europe",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "France",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/france",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "switzerlandwest",
-        "Type":  "Region",
-        "DisplayName":  "Switzerland West",
-        "RegionalDisplayName":  "(Europe) Switzerland West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "Switzerland",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "6.143158",
-        "Latitude":  "46.204391",
-        "PhysicalLocation":  "Geneva",
-        "PairedRegion":  "switzerlandnorth",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "france",
+    "regionalDisplayName": "France",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Germany",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/germany",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "uaecentral",
-        "Type":  "Region",
-        "DisplayName":  "UAE Central",
-        "RegionalDisplayName":  "(Middle East) UAE Central",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "UAE",
-        "GeographyGroup":  "Middle East",
-        "Longitude":  "54.366669",
-        "Latitude":  "24.466667",
-        "PhysicalLocation":  "Abu Dhabi",
-        "PairedRegion":  "uaenorth",
-        "Special Access":  "TRUE",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "germany",
+    "regionalDisplayName": "Germany",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Global",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/global",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "uaenorth",
-        "Type":  "Region",
-        "DisplayName":  "UAE North",
-        "RegionalDisplayName":  "(Middle East) UAE North",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "UAE",
-        "GeographyGroup":  "Middle East",
-        "Longitude":  "55.316666",
-        "Latitude":  "25.266666",
-        "PhysicalLocation":  "Dubai",
-        "PairedRegion":  "uaecentral",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "global",
+    "regionalDisplayName": "Global",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "India",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/india",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "uksouth",
-        "Type":  "Region",
-        "DisplayName":  "UK South",
-        "RegionalDisplayName":  "(UK) UK South",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "United Kingdom",
-        "GeographyGroup":  "UK",
-        "Longitude":  "-0.799",
-        "Latitude":  "50.941",
-        "PhysicalLocation":  "London",
-        "PairedRegion":  "ukwest",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "india",
+    "regionalDisplayName": "India",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Indonesia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/indonesia",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "ukwest",
-        "Type":  "Region",
-        "DisplayName":  "UK West",
-        "RegionalDisplayName":  "(UK) UK West",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United Kingdom",
-        "GeographyGroup":  "UK",
-        "Longitude":  "-3.084",
-        "Latitude":  "53.427",
-        "PhysicalLocation":  "Cardiff",
-        "PairedRegion":  "uksouth",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "indonesia",
+    "regionalDisplayName": "Indonesia",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Israel",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/israel",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "westcentralus",
-        "Type":  "Region",
-        "DisplayName":  "West Central US",
-        "RegionalDisplayName":  "(US) West Central US",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-110.234",
-        "Latitude":  "40.89",
-        "PhysicalLocation":  "Wyoming",
-        "PairedRegion":  "westus2",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "israel",
+    "regionalDisplayName": "Israel",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Italy",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/italy",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "westeurope",
-        "Type":  "Region",
-        "DisplayName":  "West Europe",
-        "RegionalDisplayName":  "(Europe) West Europe",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "Europe",
-        "GeographyGroup":  "Europe",
-        "Longitude":  "4.9",
-        "Latitude":  "52.3667",
-        "PhysicalLocation":  "Netherlands",
-        "PairedRegion":  "northeurope",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "italy",
+    "regionalDisplayName": "Italy",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Japan",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/japan",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "westindia",
-        "Type":  "Region",
-        "DisplayName":  "West India",
-        "RegionalDisplayName":  "(Asia Pacific) West India",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "India",
-        "GeographyGroup":  "Asia Pacific",
-        "Longitude":  "72.868",
-        "Latitude":  "19.088",
-        "PhysicalLocation":  "Mumbai",
-        "PairedRegion":  "southindia",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "japan",
+    "regionalDisplayName": "Japan",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Korea",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/korea",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "westus",
-        "Type":  "Region",
-        "DisplayName":  "West US",
-        "RegionalDisplayName":  "(US) West US",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-122.417",
-        "Latitude":  "37.783",
-        "PhysicalLocation":  "California",
-        "PairedRegion":  "eastus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "FALSE",
-        "AvailabilityZoneCount":  "1"
+    "name": "korea",
+    "regionalDisplayName": "Korea",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Malaysia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/malaysia",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "westus2",
-        "Type":  "Region",
-        "DisplayName":  "West US 2",
-        "RegionalDisplayName":  "(US) West US 2",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Recommended",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-119.852",
-        "Latitude":  "47.233",
-        "PhysicalLocation":  "Washington",
-        "PairedRegion":  "westcentralus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
+    "name": "malaysia",
+    "regionalDisplayName": "Malaysia",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Mexico",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/mexico",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
     },
-    {
-        "Location":  "westus3",
-        "Type":  "Region",
-        "DisplayName":  "West US 3",
-        "RegionalDisplayName":  "(US) West US 3",
-        "RegionType":  "Physical",
-        "RegionCategory":  "Other",
-        "Geography":  "United States",
-        "GeographyGroup":  "US",
-        "Longitude":  "-112.074036",
-        "Latitude":  "33.448376",
-        "PhysicalLocation":  "Phoenix",
-        "PairedRegion":  "eastus",
-        "Special Access":  "",
-        "AvailabilityZoneSupport":  "TRUE",
-        "AvailabilityZoneCount":  "3"
-    }
+    "name": "mexico",
+    "regionalDisplayName": "Mexico",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "New Zealand",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/newzealand",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "newzealand",
+    "regionalDisplayName": "New Zealand",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Norway",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/norway",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "norway",
+    "regionalDisplayName": "Norway",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Poland",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/poland",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "poland",
+    "regionalDisplayName": "Poland",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Qatar",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/qatar",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "qatar",
+    "regionalDisplayName": "Qatar",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Singapore",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/singapore",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "singapore",
+    "regionalDisplayName": "Singapore",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "South Africa",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southafrica",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "southafrica",
+    "regionalDisplayName": "South Africa",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Spain",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/spain",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "spain",
+    "regionalDisplayName": "Spain",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Sweden",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/sweden",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "sweden",
+    "regionalDisplayName": "Sweden",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Switzerland",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/switzerland",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "switzerland",
+    "regionalDisplayName": "Switzerland",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Taiwan",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/taiwan",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "taiwan",
+    "regionalDisplayName": "Taiwan",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "United Arab Emirates",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uae",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "uae",
+    "regionalDisplayName": "United Arab Emirates",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "United Kingdom",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uk",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "uk",
+    "regionalDisplayName": "United Kingdom",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "United States",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/unitedstates",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "unitedstates",
+    "regionalDisplayName": "United States",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "United States EUAP",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/unitedstateseuap",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "unitedstateseuap",
+    "regionalDisplayName": "United States EUAP",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "East Asia (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastasiastage",
+    "metadata": {
+      "geography": "asia",
+      "geographyGroup": "Asia Pacific",
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "eastasiastage",
+    "regionalDisplayName": "(Asia Pacific) East Asia (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Southeast Asia (Stage)",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southeastasiastage",
+    "metadata": {
+      "geography": "asia",
+      "geographyGroup": "Asia Pacific",
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "southeastasiastage",
+    "regionalDisplayName": "(Asia Pacific) Southeast Asia (Stage)",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "eastus2-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "eastus2-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "eastus2-az3"
+      }
+    ],
+    "displayName": "East US 2",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus2",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "36.6681",
+      "longitude": "-78.3889",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centralus",
+          "name": "centralus"
+        }
+      ],
+      "physicalLocation": "Virginia",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "eastus2",
+    "regionalDisplayName": "(US) East US 2",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "East US STG",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastusstg",
+    "metadata": {
+      "geography": "Stage (US)",
+      "geographyGroup": "US",
+      "latitude": "37.3719",
+      "longitude": "-79.8164",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southcentralusstg",
+          "name": "southcentralusstg"
+        }
+      ],
+      "physicalLocation": "Virginia",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "eastusstg",
+    "regionalDisplayName": "(US) East US STG",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "southcentralus-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "southcentralus-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "southcentralus-az3"
+      }
+    ],
+    "displayName": "South Central US",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southcentralus",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "29.4167",
+      "longitude": "-98.5",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/northcentralus",
+          "name": "northcentralus"
+        }
+      ],
+      "physicalLocation": "Texas",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "southcentralus",
+    "regionalDisplayName": "(US) South Central US",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
+        "physicalZone": "westus3-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "westus3-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "westus3-az3"
+      }
+    ],
+    "displayName": "West US 3",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westus3",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "33.448376",
+      "longitude": "-112.074036",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus",
+          "name": "eastus"
+        }
+      ],
+      "physicalLocation": "Phoenix",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "westus3",
+    "regionalDisplayName": "(US) West US 3",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "North Central US",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/northcentralus",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "41.8819",
+      "longitude": "-87.6278",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southcentralus",
+          "name": "southcentralus"
+        }
+      ],
+      "physicalLocation": "Illinois",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "northcentralus",
+    "regionalDisplayName": "(US) North Central US",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "West US",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westus",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "37.783",
+      "longitude": "-122.417",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus",
+          "name": "eastus"
+        }
+      ],
+      "physicalLocation": "California",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "westus",
+    "regionalDisplayName": "(US) West US",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Jio India West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/jioindiawest",
+    "metadata": {
+      "geography": "India",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "22.470701",
+      "longitude": "70.05773",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/jioindiacentral",
+          "name": "jioindiacentral"
+        }
+      ],
+      "physicalLocation": "Jamnagar",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "jioindiawest",
+    "regionalDisplayName": "(Asia Pacific) Jio India West",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Central US EUAP",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centraluseuap",
+    "metadata": {
+      "geography": "Canary (US)",
+      "geographyGroup": "US",
+      "latitude": "41.5908",
+      "longitude": "-93.6208",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastus2euap",
+          "name": "eastus2euap"
+        }
+      ],
+      "physicalLocation": "",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "centraluseuap",
+    "regionalDisplayName": "(US) Central US EUAP",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "South Central US STG",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southcentralusstg",
+    "metadata": {
+      "geography": "Stage (US)",
+      "geographyGroup": "US",
+      "latitude": "29.4167",
+      "longitude": "-98.5",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/eastusstg",
+          "name": "eastusstg"
+        }
+      ],
+      "physicalLocation": "Texas",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "southcentralusstg",
+    "regionalDisplayName": "(US) South Central US STG",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "West Central US",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westcentralus",
+    "metadata": {
+      "geography": "United States",
+      "geographyGroup": "US",
+      "latitude": "40.89",
+      "longitude": "-110.234",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westus2",
+          "name": "westus2"
+        }
+      ],
+      "physicalLocation": "Wyoming",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "westcentralus",
+    "regionalDisplayName": "(US) West Central US",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "South Africa West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southafricawest",
+    "metadata": {
+      "geography": "South Africa",
+      "geographyGroup": "Africa",
+      "latitude": "-34.075691",
+      "longitude": "18.843266",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southafricanorth",
+          "name": "southafricanorth"
+        }
+      ],
+      "physicalLocation": "Cape Town",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "southafricawest",
+    "regionalDisplayName": "(Africa) South Africa West",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "Australia Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiacentral",
+    "metadata": {
+      "geography": "Australia",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "-35.3075",
+      "longitude": "149.1244",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiacentral2",
+          "name": "australiacentral2"
+        }
+      ],
+      "physicalLocation": "Canberra",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "australiacentral",
+    "regionalDisplayName": "(Asia Pacific) Australia Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Australia Central 2",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiacentral2",
+    "metadata": {
+      "geography": "Australia",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "-35.3075",
+      "longitude": "149.1244",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiacentral",
+          "name": "australiacentral"
+        }
+      ],
+      "physicalLocation": "Canberra",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "australiacentral2",
+    "regionalDisplayName": "(Asia Pacific) Australia Central 2",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "Australia Southeast",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiasoutheast",
+    "metadata": {
+      "geography": "Australia",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "-37.8136",
+      "longitude": "144.9631",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/australiaeast",
+          "name": "australiaeast"
+        }
+      ],
+      "physicalLocation": "Victoria",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "australiasoutheast",
+    "regionalDisplayName": "(Asia Pacific) Australia Southeast",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Jio India Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/jioindiacentral",
+    "metadata": {
+      "geography": "India",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "21.146633",
+      "longitude": "79.08886",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/jioindiawest",
+          "name": "jioindiawest"
+        }
+      ],
+      "physicalLocation": "Nagpur",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "jioindiacentral",
+    "regionalDisplayName": "(Asia Pacific) Jio India Central",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Korea South",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/koreasouth",
+    "metadata": {
+      "geography": "Korea",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "35.1796",
+      "longitude": "129.0756",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/koreacentral",
+          "name": "koreacentral"
+        }
+      ],
+      "physicalLocation": "Busan",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "koreasouth",
+    "regionalDisplayName": "(Asia Pacific) Korea South",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "South India",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southindia",
+    "metadata": {
+      "geography": "India",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "12.9822",
+      "longitude": "80.1636",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/centralindia",
+          "name": "centralindia"
+        }
+      ],
+      "physicalLocation": "Chennai",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "southindia",
+    "regionalDisplayName": "(Asia Pacific) South India",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "West India",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/westindia",
+    "metadata": {
+      "geography": "India",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "19.088",
+      "longitude": "72.868",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/southindia",
+          "name": "southindia"
+        }
+      ],
+      "physicalLocation": "Mumbai",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "westindia",
+    "regionalDisplayName": "(Asia Pacific) West India",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "Canada East",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/canadaeast",
+    "metadata": {
+      "geography": "Canada",
+      "geographyGroup": "Canada",
+      "latitude": "46.817",
+      "longitude": "-71.217",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/canadacentral",
+          "name": "canadacentral"
+        }
+      ],
+      "physicalLocation": "Quebec",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "canadaeast",
+    "regionalDisplayName": "(Canada) Canada East",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  },
+  {
+    "displayName": "France South",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/francesouth",
+    "metadata": {
+      "geography": "France",
+      "geographyGroup": "Europe",
+      "latitude": "43.8345",
+      "longitude": "2.1972",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/francecentral",
+          "name": "francecentral"
+        }
+      ],
+      "physicalLocation": "Marseille",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "francesouth",
+    "regionalDisplayName": "(Europe) France South",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "Germany North",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/germanynorth",
+    "metadata": {
+      "geography": "Germany",
+      "geographyGroup": "Europe",
+      "latitude": "53.073635",
+      "longitude": "8.806422",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/germanywestcentral",
+          "name": "germanywestcentral"
+        }
+      ],
+      "physicalLocation": "Berlin",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "germanynorth",
+    "regionalDisplayName": "(Europe) Germany North",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "Norway West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/norwaywest",
+    "metadata": {
+      "geography": "Norway",
+      "geographyGroup": "Europe",
+      "latitude": "58.969975",
+      "longitude": "5.733107",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/norwayeast",
+          "name": "norwayeast"
+        }
+      ],
+      "physicalLocation": "Norway",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "norwaywest",
+    "regionalDisplayName": "(Europe) Norway West",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "Switzerland West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/switzerlandwest",
+    "metadata": {
+      "geography": "Switzerland",
+      "geographyGroup": "Europe",
+      "latitude": "46.204391",
+      "longitude": "6.143158",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/switzerlandnorth",
+          "name": "switzerlandnorth"
+        }
+      ],
+      "physicalLocation": "Geneva",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "switzerlandwest",
+    "regionalDisplayName": "(Europe) Switzerland West",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "UAE Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uaecentral",
+    "metadata": {
+      "geography": "UAE",
+      "geographyGroup": "Middle East",
+      "latitude": "24.466667",
+      "longitude": "54.366669",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uaenorth",
+          "name": "uaenorth"
+        }
+      ],
+      "physicalLocation": "Abu Dhabi",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "uaecentral",
+    "regionalDisplayName": "(Middle East) UAE Central",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "Brazil Southeast",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/brazilsoutheast",
+    "metadata": {
+      "geography": "Brazil",
+      "geographyGroup": "South America",
+      "latitude": "-22.90278",
+      "longitude": "-43.2075",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/brazilsouth",
+          "name": "brazilsouth"
+        }
+      ],
+      "physicalLocation": "Rio",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "brazilsoutheast",
+    "regionalDisplayName": "(South America) Brazil Southeast",
+    "type": "Region",
+    "RestrictedAccessRegion": true
+  },
+  {
+    "displayName": "UK West",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/ukwest",
+    "metadata": {
+      "geography": "United Kingdom",
+      "geographyGroup": "UK",
+      "latitude": "53.427",
+      "longitude": "-3.084",
+      "pairedRegion": [
+        {
+          "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/uksouth",
+          "name": "uksouth"
+        }
+      ],
+      "physicalLocation": "Cardiff",
+      "regionCategory": "Other",
+      "regionType": "Physical"
+    },
+    "name": "ukwest",
+    "regionalDisplayName": "(UK) UK West",
+    "type": "Region",
+    "RestrictedAccessRegion": false
+  }
 ]
