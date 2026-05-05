@@ -33,20 +33,31 @@ Write-Information "=== Updating latency data ==="
 $latencyResult = & "$scriptsDir\Get-LatencyData.ps1" `
     -OutputPath (Join-Path $DataPath 'latency.csv')
 
+# ── Product Availability ─────────────────────────────────────────────────────
+
+Write-Information ""
+Write-Information "=== Updating product availability data ==="
+$productsResult = & "$scriptsDir\Get-ProductAvailabilityData.ps1" `
+    -OutputPath (Join-Path $DataPath 'productAvailability.csv')
+
 # ── Summary ───────────────────────────────────────────────────────────────────
 
 Write-Information ""
 Write-Information "=== Updating Last Updated data ==="
 $lastUpdated = [PSCustomObject]@{
-    RegionsRetrievedAt  = $regionsResult.RetrievedAt
-    LatencyRetrievedAt  = $latencyResult.RetrievedAt
-    LatencyDatasetDate  = $latencyResult.DatasetDate
+    RegionsRetrievedAt      = $regionsResult.RetrievedAt
+    LatencyRetrievedAt      = $latencyResult.RetrievedAt
+    LatencyDatasetDate      = $latencyResult.DatasetDate
+    ProductsRetrievedAt     = $productsResult.RetrievedAt
 }
 $lastUpdated | ConvertTo-Json | Set-Content (Join-Path $DataPath 'lastUpdated.json')
-Write-Information ("Regions: {0}, Latency: {1} (Latency Source: {2})" -f `
+Write-Information ("Regions: {0}, Latency: {1} (Latency Source: {2}), Products: {3} ({4} products, {5} regions)" -f `
     $lastUpdated.RegionsRetrievedAt, `
     $lastUpdated.LatencyRetrievedAt, `
-    $lastUpdated.LatencyDatasetDate)
+    $lastUpdated.LatencyDatasetDate, `
+    $lastUpdated.ProductsRetrievedAt, `
+    $productsResult.OfferingCount, `
+    $productsResult.RegionCount)
 
 Write-Information ""
 Write-Information "=== Done ==="

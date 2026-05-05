@@ -1,14 +1,14 @@
 <#
 .SYNOPSIS
     Fetches Azure region data from the Azure CLI and annotates each region with a
-    RestrictedAccessRegion field sourced from the Microsoft docs.
+    ReservedAccessRegion field sourced from the Microsoft docs.
 
 .DESCRIPTION
     1. Runs `az account list-locations` to get the authoritative region list as JSON.
     2. Fetches the regions-list.md source from the MicrosoftDocs GitHub repo.
-    3. Parses the markdown table to find regions prefixed with the restricted-access
+    3. Parses the markdown table to find regions prefixed with the reserved-access
        icon (icon-region-restricted.svg).
-    4. Adds a RestrictedAccessRegion boolean to each region object.
+    4. Adds a ReservedAccessRegion boolean to each region object.
     5. Writes the result to Data/regions.json.
 
 .PARAMETER OutputPath
@@ -41,7 +41,7 @@ if ($LASTEXITCODE -ne 0) {
 $regions = $azRaw | ConvertFrom-Json
 Write-Information "  Retrieved $($regions.Count) regions."
 
-# ── 2. Fetch restricted-access region list from docs markdown ─────────────────
+# ── 2. Fetch reserved-access region list from docs markdown ─────────────────
 
 $mdUrl = 'https://raw.githubusercontent.com/MicrosoftDocs/reliability-docs/refs/heads/main/articles/reliability/regions-list.md'
 Write-Information "Fetching regions list from MicrosoftDocs..."
@@ -115,14 +115,14 @@ foreach ($row in $rows) {
     }
 }
 
-Write-Information "  Found $($restrictedNames.Count) restricted-access regions:"
+Write-Information "  Found $($restrictedNames.Count) reserved-access regions:"
 $restrictedNames | Sort-Object | ForEach-Object { Write-Information "    $_" }
 
-# ── 6. Annotate each region with RestrictedAccessRegion ───────────────────────
+# ── 6. Annotate each region with ReservedAccessRegion ───────────────────────
 
 $annotated = $regions | ForEach-Object {
     $_ | Add-Member `
-        -NotePropertyName 'RestrictedAccessRegion' `
+        -NotePropertyName 'ReservedAccessRegion' `
         -NotePropertyValue ($restrictedNames.Contains($_.name)) `
         -PassThru
 }

@@ -47,6 +47,7 @@ Line thickness also scales with latency — faster connections are drawn thicker
 The left-hand panel lets you filter what's shown on the map:
 - **Source / Destination trees** — hierarchical region pickers organized by geography group and geography. Check individual regions, whole geographies, or entire groups. Mix and match source and destination independently.
 - **Latency range** — filter to only show connections within a specific ms range.
+- **Products** — a hierarchical tree of Azure service offerings and SKUs. Check any combination; regions that don't support all selected services are removed from the map. Status filters (GA, Preview, Retiring) control which availability states count as "supported". An All / None toolbar and a search box make navigating a long product list practical.
 - **Apply / Reset** buttons to control when filters take effect.
 
 **Selection and highlighting**
@@ -62,7 +63,20 @@ The left-hand panel lets you filter what's shown on the map:
 - Pinned tooltips are **draggable** — click and drag them to reposition without losing the selection.
 
 **Table view**
-The **Table** button opens a pivot matrix of all currently filtered connections, with latency values color-coded by tier. A **Copy Data** button in the table header copies the matrix as CSV to the clipboard. If no regions are selected the modal shows a prompt to apply filters first.
+The **View Latency Table** button opens a pivot matrix of all currently filtered connections, with latency values color-coded by tier. A **Copy Data** button in the table header copies the matrix as CSV to the clipboard. If no regions are selected the modal shows a prompt to apply filters first.
+
+**Product Availability**
+The **Product Availability** button opens a modal showing which Azure services are available in each of the currently filtered regions. The table is organized with:
+- **Offering** and **SKU** as sticky left columns.
+- **Geography group headers** spanning their member regions, so you can see at a glance where a service is available within a geographic block.
+- Region columns sorted by geography then alphabetically within each geography.
+- Cells coloured by availability status — GA, Preview, Retiring, or Unavailable (red).
+- Column headers for regions where none of the selected services are available are highlighted red.
+- A **Non Regional** column when any selected service is non-regional.
+- A **●** marker on Reserved Access region headers, with a footnote explaining the symbol.
+- A **Copy Data** button that exports the visible table as CSV.
+
+The modal is frozen to the filter state at the last **Apply** click — changing product or region selections without clicking Apply does not update the table.
 
 **Data info**
 The **ⓘ** button (next to the Table button) shows where the data comes from, including the latency dataset date and when each data file was last retrieved.
@@ -70,7 +84,7 @@ The **ⓘ** button (next to the Table button) shows where the data comes from, i
 **Region markers**
 - Blue dot — region with 3 or more availability zones
 - Grey dot — region with fewer than 3 availability zones
-- Red dashed outline — Restricted Access region
+- Red dashed outline — Reserved Access region (requires special enrollment)
 
 **Basemap selector**
 The layer control (top-right corner of the map) lets you switch between:
@@ -78,6 +92,9 @@ The layer control (top-right corner of the map) lets you switch between:
 - **OpenStreetMap** — standard OSM
 - **Voyager** — CARTO light/colorful style
 - **Positron** — CARTO minimal light style
+
+**Legend and Data Tables panel**
+The collapsible **Legend and Data Tables** panel in the bottom-left corner shows the latency colour key, the region marker legend, and buttons to open the Latency Table and Product Availability modals.
 
 ---
 
@@ -89,8 +106,11 @@ Sourced from the [Azure network latency statistics](https://learn.microsoft.com/
 **Region metadata** — `Data/regions.json`
 Retrieved from the Azure CLI via `az account list-locations`, which returns coordinates, geography group, geography, physical location, paired region, and availability zone mappings. The data is stored as JSON (the format returned by the CLI) rather than CSV.
 
-**Restricted Access status**
-The CLI does not expose whether a region requires special access approval. This flag is sourced separately by scraping the [Azure regions list](https://learn.microsoft.com/en-us/azure/reliability/regions-list) page on Microsoft Learn, which marks restricted-access regions with a dedicated icon in its table.
+**Product availability** — `Data/productAvailability.csv`
+A pivot CSV with one row per offering/SKU combination and one column per Azure region (plus a "Non Regional" column for services that are not region-specific). Cell values are availability status strings: `GA`, `Preview`, `Closing Down`, or empty. This file is used exclusively by the Product Availability modal and product filter in the filter pane.
+
+**Reserved Access status**
+The CLI does not expose whether a region requires special access approval. This flag is sourced separately by scraping the [Azure regions list](https://learn.microsoft.com/en-us/azure/reliability/regions-list) page on Microsoft Learn, which marks reserved-access regions with a dedicated icon in its table.
 
 **Last updated** — `Data/lastUpdated.json`
 Written by the data refresh scripts. Records when each data file was last retrieved and what dataset date the latency article reported. Shown in the ⓘ info modal.

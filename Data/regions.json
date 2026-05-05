@@ -34,7 +34,7 @@
     "name": "eastus",
     "regionalDisplayName": "(US) East US",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -71,7 +71,7 @@
     "name": "westus2",
     "regionalDisplayName": "(US) West US 2",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -108,7 +108,7 @@
     "name": "australiaeast",
     "regionalDisplayName": "(Asia Pacific) Australia East",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -145,7 +145,7 @@
     "name": "southeastasia",
     "regionalDisplayName": "(Asia Pacific) Southeast Asia",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -182,7 +182,7 @@
     "name": "northeurope",
     "regionalDisplayName": "(Europe) North Europe",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -219,7 +219,7 @@
     "name": "swedencentral",
     "regionalDisplayName": "(Europe) Sweden Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -256,7 +256,7 @@
     "name": "westeurope",
     "regionalDisplayName": "(Europe) West Europe",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -293,7 +293,7 @@
     "name": "uksouth",
     "regionalDisplayName": "(UK) UK South",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -330,7 +330,7 @@
     "name": "centralus",
     "regionalDisplayName": "(US) Central US",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -367,7 +367,7 @@
     "name": "southafricanorth",
     "regionalDisplayName": "(Africa) South Africa North",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -404,7 +404,7 @@
     "name": "centralindia",
     "regionalDisplayName": "(Asia Pacific) Central India",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -441,7 +441,7 @@
     "name": "eastasia",
     "regionalDisplayName": "(Asia Pacific) East Asia",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -473,7 +473,7 @@
     "name": "indonesiacentral",
     "regionalDisplayName": "(Asia Pacific) Indonesia Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -510,7 +510,7 @@
     "name": "japaneast",
     "regionalDisplayName": "(Asia Pacific) Japan East",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -547,7 +547,7 @@
     "name": "japanwest",
     "regionalDisplayName": "(Asia Pacific) Japan West",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -584,7 +584,7 @@
     "name": "koreacentral",
     "regionalDisplayName": "(Asia Pacific) Korea Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -616,7 +616,7 @@
     "name": "malaysiawest",
     "regionalDisplayName": "(Asia Pacific) Malaysia West",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -648,7 +648,7 @@
     "name": "newzealandnorth",
     "regionalDisplayName": "(Asia Pacific) New Zealand North",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -685,7 +685,7 @@
     "name": "canadacentral",
     "regionalDisplayName": "(Canada) Canada Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -717,7 +717,7 @@
     "name": "austriaeast",
     "regionalDisplayName": "(Europe) Austria East",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -749,7 +749,7 @@
     "name": "belgiumcentral",
     "regionalDisplayName": "(Europe) Belgium Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -781,7 +781,7 @@
     "name": "denmarkeast",
     "regionalDisplayName": "(Europe) Denmark East",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -818,7 +818,7 @@
     "name": "francecentral",
     "regionalDisplayName": "(Europe) France Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -855,7 +855,7 @@
     "name": "germanywestcentral",
     "regionalDisplayName": "(Europe) Germany West Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -887,7 +887,7 @@
     "name": "italynorth",
     "regionalDisplayName": "(Europe) Italy North",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -924,7 +924,7 @@
     "name": "norwayeast",
     "regionalDisplayName": "(Europe) Norway East",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -956,7 +956,7 @@
     "name": "polandcentral",
     "regionalDisplayName": "(Europe) Poland Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -988,7 +988,7 @@
     "name": "spaincentral",
     "regionalDisplayName": "(Europe) Spain Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1025,7 +1025,7 @@
     "name": "switzerlandnorth",
     "regionalDisplayName": "(Europe) Switzerland North",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1057,7 +1057,7 @@
     "name": "mexicocentral",
     "regionalDisplayName": "(Mexico) Mexico Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1094,7 +1094,7 @@
     "name": "uaenorth",
     "regionalDisplayName": "(Middle East) UAE North",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1131,7 +1131,7 @@
     "name": "brazilsouth",
     "regionalDisplayName": "(South America) Brazil South",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1163,7 +1163,7 @@
     "name": "chilecentral",
     "regionalDisplayName": "(South America) Chile Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1204,7 +1204,7 @@
     "name": "eastus2euap",
     "regionalDisplayName": "(US) East US 2 EUAP",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1236,7 +1236,7 @@
     "name": "israelcentral",
     "regionalDisplayName": "(Middle East) Israel Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1268,7 +1268,7 @@
     "name": "qatarcentral",
     "regionalDisplayName": "(Middle East) Qatar Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Central US (Stage)",
@@ -1282,7 +1282,7 @@
     "name": "centralusstage",
     "regionalDisplayName": "(US) Central US (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "East US (Stage)",
@@ -1296,7 +1296,7 @@
     "name": "eastusstage",
     "regionalDisplayName": "(US) East US (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "East US 2 (Stage)",
@@ -1310,7 +1310,7 @@
     "name": "eastus2stage",
     "regionalDisplayName": "(US) East US 2 (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "North Central US (Stage)",
@@ -1324,7 +1324,7 @@
     "name": "northcentralusstage",
     "regionalDisplayName": "(US) North Central US (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "South Central US (Stage)",
@@ -1338,7 +1338,7 @@
     "name": "southcentralusstage",
     "regionalDisplayName": "(US) South Central US (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "West US (Stage)",
@@ -1352,7 +1352,7 @@
     "name": "westusstage",
     "regionalDisplayName": "(US) West US (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "West US 2 (Stage)",
@@ -1366,7 +1366,7 @@
     "name": "westus2stage",
     "regionalDisplayName": "(US) West US 2 (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Asia",
@@ -1378,7 +1378,7 @@
     "name": "asia",
     "regionalDisplayName": "Asia",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Asia Pacific",
@@ -1390,7 +1390,7 @@
     "name": "asiapacific",
     "regionalDisplayName": "Asia Pacific",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Australia",
@@ -1402,7 +1402,7 @@
     "name": "australia",
     "regionalDisplayName": "Australia",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Brazil",
@@ -1414,7 +1414,7 @@
     "name": "brazil",
     "regionalDisplayName": "Brazil",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Canada",
@@ -1426,7 +1426,7 @@
     "name": "canada",
     "regionalDisplayName": "Canada",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Europe",
@@ -1438,7 +1438,7 @@
     "name": "europe",
     "regionalDisplayName": "Europe",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "France",
@@ -1450,7 +1450,7 @@
     "name": "france",
     "regionalDisplayName": "France",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Germany",
@@ -1462,7 +1462,7 @@
     "name": "germany",
     "regionalDisplayName": "Germany",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Global",
@@ -1474,7 +1474,7 @@
     "name": "global",
     "regionalDisplayName": "Global",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "India",
@@ -1486,7 +1486,7 @@
     "name": "india",
     "regionalDisplayName": "India",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Indonesia",
@@ -1498,7 +1498,7 @@
     "name": "indonesia",
     "regionalDisplayName": "Indonesia",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Israel",
@@ -1510,7 +1510,7 @@
     "name": "israel",
     "regionalDisplayName": "Israel",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Italy",
@@ -1522,7 +1522,7 @@
     "name": "italy",
     "regionalDisplayName": "Italy",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Japan",
@@ -1534,7 +1534,7 @@
     "name": "japan",
     "regionalDisplayName": "Japan",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Korea",
@@ -1546,7 +1546,7 @@
     "name": "korea",
     "regionalDisplayName": "Korea",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Malaysia",
@@ -1558,7 +1558,7 @@
     "name": "malaysia",
     "regionalDisplayName": "Malaysia",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Mexico",
@@ -1570,7 +1570,7 @@
     "name": "mexico",
     "regionalDisplayName": "Mexico",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "New Zealand",
@@ -1582,7 +1582,7 @@
     "name": "newzealand",
     "regionalDisplayName": "New Zealand",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Norway",
@@ -1594,7 +1594,7 @@
     "name": "norway",
     "regionalDisplayName": "Norway",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Poland",
@@ -1606,7 +1606,7 @@
     "name": "poland",
     "regionalDisplayName": "Poland",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Qatar",
@@ -1618,7 +1618,7 @@
     "name": "qatar",
     "regionalDisplayName": "Qatar",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Singapore",
@@ -1630,7 +1630,7 @@
     "name": "singapore",
     "regionalDisplayName": "Singapore",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "South Africa",
@@ -1642,7 +1642,7 @@
     "name": "southafrica",
     "regionalDisplayName": "South Africa",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Spain",
@@ -1654,7 +1654,7 @@
     "name": "spain",
     "regionalDisplayName": "Spain",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Sweden",
@@ -1666,7 +1666,7 @@
     "name": "sweden",
     "regionalDisplayName": "Sweden",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Switzerland",
@@ -1678,7 +1678,7 @@
     "name": "switzerland",
     "regionalDisplayName": "Switzerland",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Taiwan",
@@ -1690,7 +1690,7 @@
     "name": "taiwan",
     "regionalDisplayName": "Taiwan",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "United Arab Emirates",
@@ -1702,7 +1702,7 @@
     "name": "uae",
     "regionalDisplayName": "United Arab Emirates",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "United Kingdom",
@@ -1714,7 +1714,7 @@
     "name": "uk",
     "regionalDisplayName": "United Kingdom",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "United States",
@@ -1726,7 +1726,7 @@
     "name": "unitedstates",
     "regionalDisplayName": "United States",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "United States EUAP",
@@ -1738,7 +1738,7 @@
     "name": "unitedstateseuap",
     "regionalDisplayName": "United States EUAP",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "East Asia (Stage)",
@@ -1752,7 +1752,7 @@
     "name": "eastasiastage",
     "regionalDisplayName": "(Asia Pacific) East Asia (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Southeast Asia (Stage)",
@@ -1766,7 +1766,7 @@
     "name": "southeastasiastage",
     "regionalDisplayName": "(Asia Pacific) Southeast Asia (Stage)",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1803,7 +1803,7 @@
     "name": "eastus2",
     "regionalDisplayName": "(US) East US 2",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "East US STG",
@@ -1826,7 +1826,7 @@
     "name": "eastusstg",
     "regionalDisplayName": "(US) East US STG",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1863,7 +1863,7 @@
     "name": "southcentralus",
     "regionalDisplayName": "(US) South Central US",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "availabilityZoneMappings": [
@@ -1900,7 +1900,7 @@
     "name": "westus3",
     "regionalDisplayName": "(US) West US 3",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "North Central US",
@@ -1923,7 +1923,7 @@
     "name": "northcentralus",
     "regionalDisplayName": "(US) North Central US",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "West US",
@@ -1946,7 +1946,7 @@
     "name": "westus",
     "regionalDisplayName": "(US) West US",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Jio India West",
@@ -1969,7 +1969,7 @@
     "name": "jioindiawest",
     "regionalDisplayName": "(Asia Pacific) Jio India West",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Central US EUAP",
@@ -1992,7 +1992,7 @@
     "name": "centraluseuap",
     "regionalDisplayName": "(US) Central US EUAP",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "South Central US STG",
@@ -2015,7 +2015,7 @@
     "name": "southcentralusstg",
     "regionalDisplayName": "(US) South Central US STG",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "West Central US",
@@ -2038,7 +2038,7 @@
     "name": "westcentralus",
     "regionalDisplayName": "(US) West Central US",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "South Africa West",
@@ -2061,7 +2061,7 @@
     "name": "southafricawest",
     "regionalDisplayName": "(Africa) South Africa West",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "Australia Central",
@@ -2084,7 +2084,7 @@
     "name": "australiacentral",
     "regionalDisplayName": "(Asia Pacific) Australia Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Australia Central 2",
@@ -2107,7 +2107,7 @@
     "name": "australiacentral2",
     "regionalDisplayName": "(Asia Pacific) Australia Central 2",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "Australia Southeast",
@@ -2130,7 +2130,7 @@
     "name": "australiasoutheast",
     "regionalDisplayName": "(Asia Pacific) Australia Southeast",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Jio India Central",
@@ -2153,7 +2153,7 @@
     "name": "jioindiacentral",
     "regionalDisplayName": "(Asia Pacific) Jio India Central",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Korea South",
@@ -2176,7 +2176,7 @@
     "name": "koreasouth",
     "regionalDisplayName": "(Asia Pacific) Korea South",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "South India",
@@ -2199,7 +2199,7 @@
     "name": "southindia",
     "regionalDisplayName": "(Asia Pacific) South India",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "West India",
@@ -2222,7 +2222,7 @@
     "name": "westindia",
     "regionalDisplayName": "(Asia Pacific) West India",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "Canada East",
@@ -2245,7 +2245,7 @@
     "name": "canadaeast",
     "regionalDisplayName": "(Canada) Canada East",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   },
   {
     "displayName": "France South",
@@ -2268,7 +2268,7 @@
     "name": "francesouth",
     "regionalDisplayName": "(Europe) France South",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "Germany North",
@@ -2291,7 +2291,7 @@
     "name": "germanynorth",
     "regionalDisplayName": "(Europe) Germany North",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "Norway West",
@@ -2314,7 +2314,7 @@
     "name": "norwaywest",
     "regionalDisplayName": "(Europe) Norway West",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "Switzerland West",
@@ -2337,7 +2337,7 @@
     "name": "switzerlandwest",
     "regionalDisplayName": "(Europe) Switzerland West",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "UAE Central",
@@ -2360,7 +2360,7 @@
     "name": "uaecentral",
     "regionalDisplayName": "(Middle East) UAE Central",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "Brazil Southeast",
@@ -2383,7 +2383,7 @@
     "name": "brazilsoutheast",
     "regionalDisplayName": "(South America) Brazil Southeast",
     "type": "Region",
-    "RestrictedAccessRegion": true
+    "ReservedAccessRegion": true
   },
   {
     "displayName": "UK West",
@@ -2406,6 +2406,6 @@
     "name": "ukwest",
     "regionalDisplayName": "(UK) UK West",
     "type": "Region",
-    "RestrictedAccessRegion": false
+    "ReservedAccessRegion": false
   }
 ]

@@ -18,6 +18,9 @@ let regionRows = [];
 const regionMap = {};
 const latencyLookup = {};
 const connections = [];
+const productHierarchy = {}; // offeringName → [skuName, ...]
+// productRegionMap: offeringName → skuName → regionName → status string
+const productRegionMap = {};
 
 // ─────────────────────────────────────────────
 //  Map state
@@ -30,6 +33,7 @@ let initialized = false;
 let selectedNode = null;
 let selectedLine = null; // 'source|target' sorted key
 let currentFiltered = [];
+let activeRegionNames = new Set();
 let pinnedTooltipGeo = null;    // [lat, lon] anchor for the pinned line tooltip
 let pinnedTooltipOffset = null; // [dx, dy] offset from midpoint pixels to tooltip position
 let pinnedNodeTooltipGeo = null;    // [lat, lon] anchor for the pinned node tooltip
@@ -84,8 +88,8 @@ function buildTreePicker(containerId) {
   const toolbar = document.getElementById(toolbarId);
   if (toolbar) {
     const actions = [
-      { label: '✓ All',    fn: () => { document.querySelectorAll(`#${treeId} .tree-cb`).forEach(cb => { cb.checked = true; cb.indeterminate = false; }); } },
-      { label: '✗ None',   fn: () => { document.querySelectorAll(`#${treeId} .tree-cb`).forEach(cb => { cb.checked = false; cb.indeterminate = false; }); } },
+      { label: '✓ All',    fn: () => { document.querySelectorAll(`#${treeId} .tree-cb`).forEach(cb => { cb.checked = true; cb.indeterminate = false; }); updateTreeGroupSummary(treeId); } },
+      { label: '✗ None',   fn: () => { document.querySelectorAll(`#${treeId} .tree-cb`).forEach(cb => { cb.checked = false; cb.indeterminate = false; }); updateTreeGroupSummary(treeId); } },
       { label: '⊞ Expand', fn: () => {
         document.querySelectorAll(`#${treeId} .tree-children`).forEach(ul => ul.classList.remove('tree-collapsed'));
         document.querySelectorAll(`#${treeId} .tree-toggle`).forEach(t => t.textContent = '▼');
@@ -176,7 +180,7 @@ function buildTreePicker(containerId) {
         regLi.appendChild(regRow);
         regionUl.appendChild(regLi);
 
-        regCb.addEventListener('change', () => updateAncestors(regCb));
+        regCb.addEventListener('change', () => { updateAncestors(regCb); updateTreeGroupSummary(treeId); });
         regLabel.addEventListener('click', () => { regCb.checked = !regCb.checked; regCb.dispatchEvent(new Event('change')); });
       });
 
@@ -186,6 +190,7 @@ function buildTreePicker(containerId) {
       geoCb.addEventListener('change', () => {
         setDescendants(geoLi, geoCb.checked);
         updateAncestors(geoCb);
+        updateTreeGroupSummary(treeId);
       });
       const toggleGeo = () => {
         const collapsed = regionUl.classList.toggle('tree-collapsed');
@@ -198,7 +203,7 @@ function buildTreePicker(containerId) {
     ggLi.appendChild(geoUl);
     ul.appendChild(ggLi);
 
-    ggCb.addEventListener('change', () => setDescendants(ggLi, ggCb.checked));
+    ggCb.addEventListener('change', () => { setDescendants(ggLi, ggCb.checked); updateTreeGroupSummary(treeId); });
     const toggleGg = () => {
       const collapsed = geoUl.classList.toggle('tree-collapsed');
       ggToggle.textContent = collapsed ? '▶' : '▼';
@@ -208,6 +213,195 @@ function buildTreePicker(containerId) {
   });
 
   container.appendChild(ul);
+}
+
+// ─────────────────────────────────────────────
+//  Product Availability tree
+// ─────────────────────────────────────────────
+
+function buildProductTree() {
+  const toolbar = document.getElementById('prod-tree-toolbar');
+  if (toolbar) {
+    const applyToVisible = (checked) => {
+      // Only affect SKU checkboxes in visible (non-hidden) nodes
+      document.querySelectorAll('#prod-tree .prod-sku-cb').forEach(cb => {
+        const li = cb.closest('li');
+        if (li && li.classList.contains('prod-node-hidden')) return;
+        cb.checked = checked;
+        cb.indeterminate = false;
+      });
+      // Update parent offering checkboxes for non-leaf offerings
+      document.querySelectorAll('#prod-tree .prod-offering-cb').forEach(offeringCb => {
+        const offeringLi = offeringCb.closest('li');
+        if (!offeringLi) return;
+        const skuUl = offeringLi.querySelector('.tree-children');
+        if (skuUl) updateProductOfferingCb(offeringCb, skuUl);
+      });
+      updateProductSummary();
+      updateProdAvailButtonState();
+    };
+    const actions = [
+      { label: '✓ All',     fn: () => applyToVisible(true) },
+      { label: '✗ None',    fn: () => applyToVisible(false) },
+      { label: '⊞ Expand',  fn: () => { document.querySelectorAll('#prod-tree .tree-children').forEach(ul => ul.classList.remove('tree-collapsed')); document.querySelectorAll('#prod-tree .tree-toggle').forEach(t => t.textContent = '▼'); } },
+      { label: '⊟ Collapse',fn: () => { document.querySelectorAll('#prod-tree .tree-children').forEach(ul => ul.classList.add('tree-collapsed')); document.querySelectorAll('#prod-tree .tree-toggle').forEach(t => t.textContent = '▶'); } },
+    ];
+    actions.forEach(({ label, fn }) => {
+      const btn = document.createElement('button');
+      btn.textContent = label;
+      btn.addEventListener('click', fn);
+      toolbar.appendChild(btn);
+    });
+  }
+
+  const container = document.getElementById('prod-tree');
+  container.innerHTML = '';
+  const ul = document.createElement('ul');
+  ul.className = 'tree-list';
+
+  Object.entries(productHierarchy).sort(([a], [b]) => a.localeCompare(b)).forEach(([offering, skus]) => {
+    const offeringLi = document.createElement('li');
+    offeringLi.className = 'tree-node prod-offering-node';
+    offeringLi.dataset.offering = offering.toLowerCase();
+
+    const offeringRow = document.createElement('div');
+    offeringRow.className = 'tree-row tree-level-0';
+
+    const offeringCb = document.createElement('input');
+    offeringCb.type = 'checkbox';
+
+    const offeringLabel = document.createElement('span');
+    offeringLabel.className = 'tree-node-label';
+    offeringLabel.textContent = offering;
+
+    // Flat leaf: offering has only a "General" SKU — no child level
+    const isLeaf = skus.length === 1 && skus[0] === 'General';
+
+    if (isLeaf) {
+      offeringCb.className = 'tree-cb prod-cb prod-sku-cb';
+      offeringCb.value = 'General';
+      offeringCb.dataset.offering = offering;
+      offeringRow.appendChild(offeringCb);
+      offeringRow.appendChild(offeringLabel);
+      offeringLi.appendChild(offeringRow);
+      offeringLi.dataset.sku = 'general';
+
+      offeringCb.addEventListener('change', () => { updateProductSummary(); updateProdAvailButtonState(); });
+      offeringLabel.addEventListener('click', () => { offeringCb.checked = !offeringCb.checked; offeringCb.dispatchEvent(new Event('change')); });
+    } else {
+      offeringCb.className = 'tree-cb prod-cb prod-offering-cb';
+
+      const toggle = document.createElement('span');
+      toggle.className = 'tree-toggle';
+      toggle.textContent = '▶';
+
+      offeringRow.appendChild(offeringCb);
+      offeringRow.appendChild(toggle);
+      offeringRow.appendChild(offeringLabel);
+      offeringLi.appendChild(offeringRow);
+
+      const skuUl = document.createElement('ul');
+      skuUl.className = 'tree-children tree-collapsed';
+
+      skus.forEach(sku => {
+        const skuLi = document.createElement('li');
+        skuLi.className = 'tree-node prod-sku-node';
+        skuLi.dataset.sku = sku.toLowerCase();
+
+        const skuRow = document.createElement('div');
+        skuRow.className = 'tree-row tree-level-1';
+
+        const skuCb = document.createElement('input');
+        skuCb.type = 'checkbox';
+        skuCb.className = 'tree-cb prod-cb prod-sku-cb';
+        skuCb.value = sku;
+        skuCb.dataset.offering = offering;
+
+        const skuLabel = document.createElement('span');
+        skuLabel.className = 'tree-node-label';
+        skuLabel.textContent = sku;
+
+        skuRow.appendChild(skuCb);
+        skuRow.appendChild(skuLabel);
+        skuLi.appendChild(skuRow);
+        skuUl.appendChild(skuLi);
+
+        skuCb.addEventListener('change', () => { updateProductOfferingCb(offeringCb, skuUl); updateProductSummary(); updateProdAvailButtonState(); });
+        skuLabel.addEventListener('click', () => { skuCb.checked = !skuCb.checked; skuCb.dispatchEvent(new Event('change')); });
+      });
+
+      offeringLi.appendChild(skuUl);
+
+      offeringCb.addEventListener('change', () => {
+        skuUl.querySelectorAll('.prod-sku-cb').forEach(cb => { cb.checked = offeringCb.checked; cb.indeterminate = false; });
+        updateProductSummary();
+        updateProdAvailButtonState();
+      });
+
+      const toggleFn = () => {
+        const collapsed = skuUl.classList.toggle('tree-collapsed');
+        toggle.textContent = collapsed ? '▶' : '▼';
+      };
+      toggle.addEventListener('click', toggleFn);
+      offeringLabel.addEventListener('click', toggleFn);
+    }
+
+    ul.appendChild(offeringLi);
+  });
+
+  container.appendChild(ul);
+}
+
+function updateProductOfferingCb(offeringCb, skuUl) {
+  const childCbs = [...skuUl.querySelectorAll('.prod-sku-cb')];
+  const allOn  = childCbs.every(c => c.checked);
+  const allOff = childCbs.every(c => !c.checked);
+  offeringCb.checked      = allOn;
+  offeringCb.indeterminate = !allOn && !allOff;
+}
+
+function updateProductSummary() {
+  const el = document.getElementById('fgs-products');
+  if (!el) return;
+  const checkedOfferings = new Set();
+  document.querySelectorAll('#prod-tree .prod-sku-cb:checked').forEach(cb => checkedOfferings.add(cb.dataset.offering));
+  const names = [...checkedOfferings].sort();
+  if (names.length === 0) {
+    el.textContent = 'No filter';
+  } else if (names.length <= 3) {
+    el.textContent = names.join(', ') + ' selected';
+  } else {
+    el.textContent = names.slice(0, 3).join(', ') + `, and ${names.length - 3} more selected`;
+  }
+}
+
+function filterProductTree(q) {
+  const query = q.toLowerCase();
+  document.querySelectorAll('#prod-tree .prod-offering-node').forEach(offeringLi => {
+    if (!query) {
+      offeringLi.classList.remove('prod-node-hidden');
+      offeringLi.querySelectorAll('.prod-sku-node').forEach(li => li.classList.remove('prod-node-hidden'));
+      return;
+    }
+    const offeringMatch = offeringLi.dataset.offering.includes(query);
+    let anySkuMatch = false;
+    offeringLi.querySelectorAll('.prod-sku-node').forEach(skuLi => {
+      const visible = offeringMatch || skuLi.dataset.sku.includes(query);
+      skuLi.classList.toggle('prod-node-hidden', !visible);
+      if (visible) anySkuMatch = true;
+    });
+    const offeringVisible = offeringMatch || anySkuMatch;
+    offeringLi.classList.toggle('prod-node-hidden', !offeringVisible);
+    // Auto-expand non-leaf offerings that have matching SKUs
+    if (offeringVisible && !offeringLi.dataset.sku) {
+      const skuUl = offeringLi.querySelector('.tree-children');
+      const toggle = offeringLi.querySelector('.tree-toggle');
+      if (skuUl && toggle) {
+        skuUl.classList.remove('tree-collapsed');
+        toggle.textContent = '▼';
+      }
+    }
+  });
 }
 
 function setDescendants(nodeLi, checked) {
@@ -248,6 +442,84 @@ function resetTree(containerId) {
 }
 
 // ─────────────────────────────────────────────
+//  Filter group summary helpers
+// ─────────────────────────────────────────────
+
+function getFilterGroupSummary(treeId) {
+  const checked = [...document.querySelectorAll(`#${treeId} .tree-region-cb`)].filter(cb => cb.checked);
+  if (checked.length === 0) return '0 items selected';
+  const names = checked.map(cb => cb.value);
+  if (names.length <= 3) return names.join(', ') + ' selected';
+  return names.slice(0, 3).join(', ') + `, and ${names.length - 3} more selected`;
+}
+
+function getLatencySummary() {
+  const min = document.getElementById('lat-min').value.trim();
+  const max = document.getElementById('lat-max').value.trim();
+  if (!min && !max) return 'No filter';
+  if (min && max) return `${min}–${max} ms`;
+  if (min) return `\u2265${min} ms`;
+  return `\u2264${max} ms`;
+}
+
+function updateTreeGroupSummary(treeId) {
+  const summaryId = treeId === 'src-tree' ? 'fgs-source' : 'fgs-destination';
+  const el = document.getElementById(summaryId);
+  if (el) el.textContent = getFilterGroupSummary(treeId);
+}
+
+function updateAllGroupSummaries() {
+  updateTreeGroupSummary('src-tree');
+  updateTreeGroupSummary('dst-tree');
+  const el = document.getElementById('fgs-latency');
+  if (el) el.textContent = getLatencySummary();
+}
+
+// ─────────────────────────────────────────────
+//  Product availability exclusion
+// ─────────────────────────────────────────────
+
+// Returns a Set of region display names that are excluded because they don't
+// satisfy at least one of the selected offering/SKU requirements.
+// A region passes a given SKU requirement if it appears in productRegionMap
+// for that offering+sku with a status matching any of the checked status values.
+// A region is excluded only if it fails ALL selected SKU requirements
+// (i.e. no selected SKU is available there at any allowed status).
+// If no SKUs are selected the filter is inactive and null is returned.
+function getProductExcludedRegions() {
+  const checkedSkuCbs = [...document.querySelectorAll('#prod-tree .prod-sku-cb:checked')];
+  if (checkedSkuCbs.length === 0) return null; // no filter active
+
+  const allowedStatuses = new Set(
+    [...document.querySelectorAll('.prod-status-cb:checked')].map(cb => cb.value.toLowerCase())
+  );
+  // Map "Retiring" checkbox value to the actual CSV status string
+  const statusMatches = (status) => {
+    const s = (status || '').toLowerCase();
+    if (allowedStatuses.has('ga') && s === 'ga') return true;
+    if (allowedStatuses.has('preview') && s === 'preview') return true;
+    if (allowedStatuses.has('retiring') && (s === 'closing down' || s === 'retiring')) return true;
+    return false;
+  };
+
+  // For each region, check if it satisfies every selected SKU requirement
+  const excluded = new Set();
+  regionRows.forEach(r => {
+    const regionName = r.DisplayName;
+    const passesAll = checkedSkuCbs.every(cb => {
+      const offering = cb.dataset.offering;
+      const sku      = cb.value;
+      const regionStatuses = productRegionMap[offering]?.[sku];
+      if (!regionStatuses) return false;
+      const status = regionStatuses[regionName] || regionStatuses['Non Regional'] || '';
+      return statusMatches(status);
+    });
+    if (!passesAll) excluded.add(regionName);
+  });
+  return excluded;
+}
+
+// ─────────────────────────────────────────────
 //  Map rendering
 // ─────────────────────────────────────────────
 
@@ -284,11 +556,14 @@ function renderConnections(options = {}) {
     document.getElementById('stat-lines').textContent = '0';
     document.getElementById('stat-regions').textContent = '0';
     currentFiltered = [];
+    activeRegionNames = new Set();
     return;
   }
 
   const latMin = parseFloat(document.getElementById('lat-min').value) || null;
   const latMax = parseFloat(document.getElementById('lat-max').value) || null;
+
+  const prodExcluded = getProductExcludedRegions(); // null = no filter
 
   const filtered = connections.filter(c => {
     const inSrc = r => !srcSet || srcSet.has(r);
@@ -296,10 +571,11 @@ function renderConnections(options = {}) {
     if (!((inSrc(c.source) && inDst(c.target)) || (inSrc(c.target) && inDst(c.source)))) return false;
     if (latMin !== null && c.latency < latMin) return false;
     if (latMax !== null && c.latency > latMax) return false;
+    if (prodExcluded !== null && (prodExcluded.has(c.source) || prodExcluded.has(c.target))) return false;
     return true;
   });
 
-  const activeRegionNames = new Set();
+  activeRegionNames = new Set();
   filtered.forEach(c => { activeRegionNames.add(c.source); activeRegionNames.add(c.target); });
 
   const drawnPairs = new Set();
@@ -399,7 +675,7 @@ function renderConnections(options = {}) {
       physicalLocation: r.PhysicalLocation,
       pairedRegion: r.PairedRegion,
       azCount: r.AvailabilityZoneCount,
-      restrictedAccess: r.RestrictedAccess,
+      reservedAccess: r.ReservedAccess,
       longitude: lon,
       latitude: lat,
     };
@@ -407,12 +683,12 @@ function renderConnections(options = {}) {
     const marker = L.circleMarker([lat, lon], {
       radius: 5,
       fillColor,
-      color: r.RestrictedAccess ? '#ff0000' : '#ffffff',
+      color: r.ReservedAccess ? '#ff0000' : '#ffffff',
       weight: 1.5,
-      dashArray: r.RestrictedAccess ? '1,3' : null,
+      dashArray: r.ReservedAccess ? '1,3' : null,
       dashOffset: null,
-      lineCap: r.RestrictedAccess ? 'square' : 'round',
-      lineJoin: r.RestrictedAccess ? 'miter' : 'round',
+      lineCap: r.ReservedAccess ? 'square' : 'round',
+      lineJoin: r.ReservedAccess ? 'miter' : 'round',
       fillOpacity: 0.9,
       opacity: 1,
       interactive: true,
@@ -629,7 +905,7 @@ function _buildNodeDetailRows(detailsEl, props) {
     ['Location', `${props.latitude?.toFixed(4) ?? ''}, ${props.longitude?.toFixed(4) ?? ''}`],
     ['Paired Region', props.pairedRegion || '—'],
     ['Availability Zones', props.azCount || '—'],
-    ['Restricted Access', props.restrictedAccess === true ? 'Yes' : 'No'],
+    ['Reserved Access', props.reservedAccess === true ? 'Yes' : 'No'],
   ];
   rows.forEach(([k, v]) => {
     const dk = document.createElement('span'); dk.className = 'tt-dk'; dk.textContent = k;
@@ -883,6 +1159,274 @@ function openTableModal() {
 
 document.getElementById('btn-table').addEventListener('click', openTableModal);
 
+// ─────────────────────────────────────────────
+//  Product availability modal
+// ─────────────────────────────────────────────
+
+let filterApplied = false; // tracks whether Apply has been clicked at least once
+let appliedRegionNames = new Set(); // union of src+dst selections at last Apply
+let appliedSkuSelections = []; // [{offering, sku}] captured at last Apply
+let appliedAllowedStatuses = new Set(); // status filter values at last Apply
+
+function updateProdAvailButtonState() {
+  // Button is always enabled — empty state is handled inside the modal
+}
+
+function openProdAvailModal() {
+  const emptyMsg = document.getElementById('prod-avail-empty-msg');
+  const tableWrap = document.getElementById('prod-avail-table-wrap');
+  const thead = document.getElementById('prod-avail-thead');
+  const tbody = document.getElementById('prod-avail-tbody');
+
+  thead.innerHTML = '';
+  tbody.innerHTML = '';
+
+  if (appliedSkuSelections.length === 0 || !filterApplied) {
+    emptyMsg.style.display = '';
+    emptyMsg.textContent = appliedSkuSelections.length === 0
+      ? 'Select one or more products in the filter pane and click Apply to see availability by region.'
+      : 'Apply the product filter to see availability by region.';
+    tableWrap.style.display = 'none';
+    document.getElementById('prod-avail-footnote').style.display = 'none';
+    document.getElementById('btn-copy-prod-csv').style.display = 'none';
+    document.getElementById('prod-avail-modal').style.display = 'flex';
+    return;
+  }
+  emptyMsg.style.display = 'none';
+  tableWrap.style.display = '';
+  document.getElementById('btn-copy-prod-csv').style.display = '';
+
+  // Rows: use snapshotted SKU selection from last Apply
+  const skuSortKey = sku => sku === 'General' ? '' : sku;
+  const rows = appliedSkuSelections
+    .slice()
+    .sort((a, b) => a.offering.localeCompare(b.offering) || skuSortKey(a.sku).localeCompare(skuSortKey(b.sku)));
+
+  // Columns: regions from src+dst selection, plus product-excluded ones, sorted alphabetically
+  // Only include regions present in regions.json
+  const knownRegionNames = new Set(regionRows.map(r => r.DisplayName));
+  const reservedRegionNames = new Set(regionRows.filter(r => r.ReservedAccess).map(r => r.DisplayName));
+  // Compute excluded regions from the snapshotted applied filter state
+  const excluded = new Set();
+  regionRows.forEach(r => {
+    const passesAll = rows.every(({ offering, sku }) => {
+      const regionStatuses = productRegionMap[offering]?.[sku];
+      if (!regionStatuses) return false;
+      const status = regionStatuses[r.DisplayName] || regionStatuses['Non Regional'] || '';
+      return statusMatches(status);
+    });
+    if (!passesAll) excluded.add(r.DisplayName);
+  });
+
+  // Use the explicitly applied region selection — never fall back to all regions
+  const baseRegions = [...appliedRegionNames];
+
+  const allRegions = baseRegions
+    .filter(name => knownRegionNames.has(name))
+    .sort((a, b) => {
+      const geoA = regionMap[a]?.Geography || 'Other';
+      const geoB = regionMap[b]?.Geography || 'Other';
+      return geoA.localeCompare(geoB) || a.localeCompare(b);
+    });
+
+  // Prepend 'Non Regional' column if any selected SKU has a non-regional entry
+  const hasNonRegional = rows.some(({ offering, sku }) => !!productRegionMap[offering]?.[sku]?.['Non Regional']);
+  const displayRegions = hasNonRegional ? ['Non Regional', ...allRegions] : allRegions;
+
+  // Status helpers
+  function statusClass(status) {
+    const s = (status || '').toLowerCase();
+    if (s === 'ga') return 'pa-status-ga';
+    if (s === 'preview') return 'pa-status-preview';
+    if (s === 'closing down' || s === 'retiring') return 'pa-status-retiring';
+    return 'pa-status-none';
+  }
+
+  function statusLabel(status) {
+    if (!status) return '–';
+    if (status.toLowerCase() === 'closing down') return 'Retiring';
+    return status;
+  }
+
+  function statusMatches(status) {
+    const s = (status || '').toLowerCase();
+    if (appliedAllowedStatuses.has('ga') && s === 'ga') return true;
+    if (appliedAllowedStatuses.has('preview') && s === 'preview') return true;
+    if (appliedAllowedStatuses.has('retiring') && (s === 'closing down' || s === 'retiring')) return true;
+    return false;
+  }
+
+  // Pre-compute which excluded regions have ALL selected rows unavailable
+  const allUnavailableRegions = new Set(
+    allRegions.filter(regionName =>
+      excluded.has(regionName) &&
+      rows.every(({ offering, sku }) => !statusMatches(productRegionMap[offering]?.[sku]?.[regionName] || ''))
+    )
+  );
+
+  // Build geography grouping for the header (allRegions is alphabetically sorted)
+  const geoGroups = [];
+  allRegions.forEach(regionName => {
+    const geo = regionMap[regionName]?.Geography || 'Other';
+    if (geoGroups.length === 0 || geoGroups[geoGroups.length - 1].geography !== geo) {
+      geoGroups.push({ geography: geo, count: 1 });
+    } else {
+      geoGroups[geoGroups.length - 1].count++;
+    }
+  });
+
+  // First header row: Offering (rowspan=2), SKU (rowspan=2), Non Regional (rowspan=2), geography groups
+  const trGeo = document.createElement('tr');
+  trGeo.className = 'pa-geo-header-row';
+
+  const thOfferingG = document.createElement('th');
+  thOfferingG.className = 'pa-col-offering pa-sticky-col';
+  thOfferingG.textContent = 'Offering';
+  thOfferingG.rowSpan = 2;
+  trGeo.appendChild(thOfferingG);
+
+  const thSkuG = document.createElement('th');
+  thSkuG.className = 'pa-col-sku pa-sticky-col2';
+  thSkuG.textContent = 'SKU';
+  thSkuG.rowSpan = 2;
+  trGeo.appendChild(thSkuG);
+
+  if (hasNonRegional) {
+    const thNR = document.createElement('th');
+    thNR.textContent = 'Non Regional';
+    thNR.classList.add('pa-col-non-regional');
+    thNR.rowSpan = 2;
+    trGeo.appendChild(thNR);
+  }
+
+  geoGroups.forEach(({ geography, count }) => {
+    const th = document.createElement('th');
+    th.textContent = geography;
+    if (count > 1) th.colSpan = count;
+    th.className = 'pa-col-geo-group';
+    trGeo.appendChild(th);
+  });
+  thead.appendChild(trGeo);
+
+  // Second header row: region names only (Offering/SKU/Non Regional already spanning from first row)
+  const trHead = document.createElement('tr');
+  trHead.className = 'pa-region-header-row';
+  allRegions.forEach(regionName => {
+    const th = document.createElement('th');
+    if (reservedRegionNames.has(regionName)) {
+      th.appendChild(document.createTextNode(regionName));
+      const sup = document.createElement('sup');
+      sup.className = 'pa-reserved-marker';
+      sup.textContent = '\u25CF'; // ●
+      th.appendChild(sup);
+    } else {
+      th.textContent = regionName;
+    }
+    if (allUnavailableRegions.has(regionName)) th.classList.add('pa-col-excluded-region');
+    trHead.appendChild(th);
+  });
+  thead.appendChild(trHead);
+
+  // Show/hide reserved-access footnote
+  const footnoteEl = document.getElementById('prod-avail-footnote');
+  const hasReserved = allRegions.some(n => reservedRegionNames.has(n));
+  if (hasReserved) {
+    footnoteEl.textContent = '\u25CF Reserved access region — requires special enrollment to use.';
+    footnoteEl.style.display = '';
+  } else {
+    footnoteEl.style.display = 'none';
+  }
+
+  // Body: one row per offering+sku; offering cell spans all rows for that offering
+  // Precompute rowspan counts
+  const offeringSpan = {};
+  rows.forEach(({ offering }) => { offeringSpan[offering] = (offeringSpan[offering] || 0) + 1; });
+  const offeringSeen = new Set();
+
+  rows.forEach(({ offering, sku }) => {
+    const tr = document.createElement('tr');
+
+    if (!offeringSeen.has(offering)) {
+      offeringSeen.add(offering);
+      const tdOffering = document.createElement('td');
+      tdOffering.className = 'pa-col-offering pa-sticky-col';
+      tdOffering.textContent = offering;
+      if (offeringSpan[offering] > 1) tdOffering.rowSpan = offeringSpan[offering];
+      tr.appendChild(tdOffering);
+      tr.classList.add('pa-offering-first-row');
+    }
+
+    const tdSku = document.createElement('td');
+    tdSku.className = 'pa-col-sku pa-sticky-col2';
+    tdSku.textContent = sku === 'General' ? '–' : sku;
+    tr.appendChild(tdSku);
+
+    displayRegions.forEach(regionName => {
+      const td = document.createElement('td');
+      // For the Non Regional column use only that key; for geographic regions no fallback
+      const nonRegionalStatus = productRegionMap[offering]?.[sku]?.['Non Regional'] || '';
+      const regionStatus = regionName === 'Non Regional'
+        ? nonRegionalStatus
+        : (productRegionMap[offering]?.[sku]?.[regionName] || '');
+      // If this SKU is non-regional and has no region-specific entry, it's available everywhere —
+      // show an em-dash rather than "Unavailable"
+      const isNonRegionalSku = !!nonRegionalStatus;
+      const hasRegionEntry = regionName === 'Non Regional' || !!productRegionMap[offering]?.[sku]?.[regionName];
+      const regionExcluded = excluded.has(regionName);
+      if (regionExcluded && !statusMatches(regionStatus) && (!isNonRegionalSku || hasRegionEntry)) {
+        td.textContent = 'Unavailable';
+        td.className = 'pa-status-unavailable pa-cell-excluded-region';
+      } else {
+        td.textContent = statusLabel(regionStatus);
+        td.className = statusClass(regionStatus);
+      }
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+
+  // Build CSV for export: header + data rows
+  const csvEscape = v => (v.includes(',') || v.includes('"') || v.includes('\n')) ? `"${v.replace(/"/g, '""')}"` : v;
+  const csvHeader = ['Offering', 'SKU', ...displayRegions].map(csvEscape).join(',');
+  const csvRows = rows.map(({ offering, sku }) => {
+    const skuDisplay = sku === 'General' ? '' : sku;
+    const cells = displayRegions.map(regionName => {
+      const status = regionName === 'Non Regional'
+        ? (productRegionMap[offering]?.[sku]?.['Non Regional'] || '')
+        : (productRegionMap[offering]?.[sku]?.[regionName] || '');
+      return statusLabel(status) === '–' ? '' : statusLabel(status);
+    });
+    return [offering, skuDisplay, ...cells].map(csvEscape).join(',');
+  });
+  document.getElementById('btn-copy-prod-csv')._csvData = [csvHeader, ...csvRows].join('\n');
+
+  document.getElementById('prod-avail-modal').style.display = 'flex';
+}
+
+document.getElementById('btn-prod-avail').addEventListener('click', openProdAvailModal);
+
+document.getElementById('btn-prod-avail-close').addEventListener('click', () => {
+  document.getElementById('prod-avail-modal').style.display = 'none';
+});
+
+document.getElementById('prod-avail-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('prod-avail-modal')) {
+    document.getElementById('prod-avail-modal').style.display = 'none';
+  }
+});
+
+document.getElementById('btn-copy-prod-csv').addEventListener('click', () => {
+  const btn = document.getElementById('btn-copy-prod-csv');
+  const csv = btn._csvData;
+  if (!csv) return;
+  navigator.clipboard.writeText(csv).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Data'; btn.classList.remove('copied'); }, 2000);
+  });
+});
+
 document.getElementById('legend-toggle').addEventListener('click', () => {
   document.getElementById('legend').classList.toggle('legend-collapsed');
 });
@@ -954,6 +1498,26 @@ document.getElementById('btn-collapse-pane').addEventListener('click', () => tog
 document.getElementById('btn-expand-pane-info').addEventListener('click', () => toggleFilterPane(false));
 document.getElementById('btn-expand-pane-filter').addEventListener('click', () => toggleFilterPane(false));
 
+['source', 'destination', 'latency', 'products'].forEach(name => {
+  document.getElementById(`fg-${name}`).classList.add('filter-group-collapsed');
+  document.getElementById(`fgh-${name}`).addEventListener('click', () => {
+    document.getElementById(`fg-${name}`).classList.toggle('filter-group-collapsed');
+  });
+});
+
+document.getElementById('prod-search').addEventListener('input', (e) => {
+  filterProductTree(e.target.value.trim());
+});
+
+document.getElementById('lat-min').addEventListener('input', () => {
+  const el = document.getElementById('fgs-latency');
+  if (el) el.textContent = getLatencySummary();
+});
+document.getElementById('lat-max').addEventListener('input', () => {
+  const el = document.getElementById('fgs-latency');
+  if (el) el.textContent = getLatencySummary();
+});
+
 document.getElementById('btn-info').addEventListener('click', (e) => {
   e.preventDefault();
   document.getElementById('info-modal').style.display = 'flex';
@@ -993,16 +1557,56 @@ function copyTree(fromId, toId) {
 document.getElementById('btn-copy-src-to-dst').addEventListener('click', (e) => {
   e.preventDefault();
   copyTree('src-tree', 'dst-tree');
+  updateAllGroupSummaries();
 });
 
 document.getElementById('btn-copy-dst-to-src').addEventListener('click', (e) => {
   e.preventDefault();
   copyTree('dst-tree', 'src-tree');
+  updateAllGroupSummaries();
 });
 
 // ─────────────────────────────────────────────
 //  Filter button handlers
 // ─────────────────────────────────────────────
+
+function updateProdExcludedUI() {
+  const el = document.getElementById('prod-excluded');
+  const list = document.getElementById('prod-excluded-list');
+  const excluded = getProductExcludedRegions();
+  if (!excluded || excluded.size === 0) {
+    el.style.display = 'none';
+    list.innerHTML = '';
+    return;
+  }
+
+  // Only surface regions the user actually selected in source or destination.
+  // getTreeSelectedRegions returns null = all, or a Set of checked names.
+  const srcSet = getTreeSelectedRegions('src-tree');
+  const dstSet = getTreeSelectedRegions('dst-tree');
+  const allRegionNames = new Set(regionRows.map(r => r.DisplayName));
+  const userSelected = new Set();
+  allRegionNames.forEach(name => {
+    if ((!srcSet || srcSet.has(name)) || (!dstSet || dstSet.has(name))) {
+      userSelected.add(name);
+    }
+  });
+
+  const visible = [...excluded].filter(name => userSelected.has(name)).sort();
+  if (visible.length === 0) {
+    el.style.display = 'none';
+    list.innerHTML = '';
+    return;
+  }
+
+  list.innerHTML = '';
+  visible.forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    list.appendChild(li);
+  });
+  el.style.display = '';
+}
 
 document.getElementById('btn-apply').addEventListener('click', () => {
   if (!initialized) return;
@@ -1019,10 +1623,36 @@ document.getElementById('btn-apply').addEventListener('click', () => {
     copyTree('dst-tree', 'src-tree');
     autoMsg = 'No source selected — destination selection was automatically applied to source.';
   }
+  if (autoMsg) updateAllGroupSummaries();
 
   autoMsgEl.textContent = autoMsg || '';
   autoMsgEl.style.display = autoMsg ? '' : 'none';
 
+  updateProdExcludedUI();
+  filterApplied = true;
+  // Snapshot the product selection and status filter at this moment
+  appliedSkuSelections = [...document.querySelectorAll('#prod-tree .prod-sku-cb:checked')]
+    .map(cb => ({ offering: cb.dataset.offering, sku: cb.value }));
+  appliedAllowedStatuses = new Set(
+    [...document.querySelectorAll('.prod-status-cb:checked')].map(cb => cb.value.toLowerCase())
+  );
+  // Capture the selected region union after any copyTree mirroring
+  const finalSrcSet = getTreeSelectedRegions('src-tree');
+  const finalDstSet = getTreeSelectedRegions('dst-tree');
+  // null = all selected; non-empty Set = specific selection; empty Set = nothing checked
+  const srcExplicit = finalSrcSet !== null && finalSrcSet.size > 0;
+  const dstExplicit = finalDstSet !== null && finalDstSet.size > 0;
+  if (!srcExplicit && !dstExplicit) {
+    // Nothing selected on either side — null means all, empty means nothing was picked
+    appliedRegionNames = finalSrcSet === null
+      ? new Set(regionRows.map(r => r.DisplayName))
+      : new Set(); // both empty — no regions
+  } else {
+    const srcNames = srcExplicit ? [...finalSrcSet] : (finalSrcSet === null ? regionRows.map(r => r.DisplayName) : []);
+    const dstNames = dstExplicit ? [...finalDstSet] : (finalDstSet === null ? regionRows.map(r => r.DisplayName) : []);
+    appliedRegionNames = new Set([...srcNames, ...dstNames]);
+  }
+  updateProdAvailButtonState();
   renderConnections({ fitBounds: true });
 });
 
@@ -1031,9 +1661,20 @@ document.getElementById('btn-reset').addEventListener('click', () => {
   document.getElementById('lat-max').value = '';
   resetTree('src-tree');
   resetTree('dst-tree');
+  updateAllGroupSummaries();
   const autoMsgEl = document.getElementById('filter-auto-msg');
   autoMsgEl.textContent = '';
   autoMsgEl.style.display = 'none';
+  document.getElementById('prod-excluded').style.display = 'none';
+  document.getElementById('prod-excluded-list').innerHTML = '';
+  appliedRegionNames = new Set();
+  appliedSkuSelections = [];
+  appliedAllowedStatuses = new Set();
+  filterApplied = false;
+  document.querySelectorAll('#prod-tree .prod-cb').forEach(cb => { cb.checked = false; cb.indeterminate = false; });
+  updateProductSummary();
+  filterApplied = false;
+  updateProdAvailButtonState();
   if (initialized) renderConnections();
 });
 
@@ -1042,10 +1683,37 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 // ─────────────────────────────────────────────
 
 async function init() {
-  const [regionsJson, latencyCsv] = await Promise.all([
+  const [regionsJson, latencyCsv, productCsv] = await Promise.all([
     fetch('Data/regions.json').then(r => r.json()),
     fetch('Data/latency.csv').then(r => r.text()),
+    fetch('Data/productAvailability.csv').then(r => r.text()).catch(() => ''),
   ]);
+
+  // Parse product availability CSV — build hierarchy for the tree picker
+  // and a full region→status map for filtering.
+  if (productCsv) {
+    const prodLines = productCsv.trim().split('\n');
+    const regionHeaders = prodLines[0].split(',').slice(2); // region names from header cols 2+
+    prodLines.slice(1).forEach(line => {
+      const first  = line.indexOf(',');
+      const second = line.indexOf(',', first + 1);
+      if (first < 0) return;
+      const offering = line.substring(0, first);
+      const sku      = second > 0 ? line.substring(first + 1, second) : line.substring(first + 1);
+      const cells    = second > 0 ? line.substring(second + 1).split(',') : [];
+
+      if (!productHierarchy[offering]) productHierarchy[offering] = [];
+      productHierarchy[offering].push(sku);
+
+      if (!productRegionMap[offering]) productRegionMap[offering] = {};
+      productRegionMap[offering][sku] = {};
+      regionHeaders.forEach((region, i) => {
+        const status = (cells[i] || '').trim();
+        if (status) productRegionMap[offering][sku][region] = status;
+      });
+    });
+    buildProductTree();
+  }
 
   // Parse latency CSV first so we know which display names are covered
   const latencyLines = latencyCsv.trim().split('\n');
@@ -1085,7 +1753,7 @@ async function init() {
       PhysicalLocation:      r.metadata?.physicalLocation || '',
       PairedRegion:          (r.metadata?.pairedRegion ?? []).map(p => p.name).join(', '),
       AvailabilityZoneCount: (r.availabilityZoneMappings ?? []).length,
-      RestrictedAccess:      r.RestrictedAccessRegion === true,
+      ReservedAccess:       r.ReservedAccessRegion === true,
     }));
 
   regionRows.forEach(r => { regionMap[r.DisplayName] = r; });

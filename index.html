@@ -48,35 +48,92 @@
 
   <div id="filter-body">
 
-    <div class="filter-group-header">Source</div>
-
-    <div class="filter-section">
-      <div class="tree-toolbar" id="src-tree-toolbar"></div>
-      <div class="tree-picker" id="src-tree"></div>
+    <div class="filter-group" id="fg-source">
+      <button class="filter-group-header" id="fgh-source">
+        <svg class="fg-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="11" height="11" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3H2l8 9.46V19l4 2v-8.54z"></path></svg>
+        <span class="fg-title">Source</span>
+        <span class="fg-chevron"></span>
+      </button>
+      <div class="filter-group-summary" id="fgs-source">0 items selected</div>
+      <div class="filter-group-body">
+        <p class="filter-group-caption">Filter latency connections by the source region.</p>
+        <div class="filter-section">
+          <div class="tree-toolbar" id="src-tree-toolbar"></div>
+          <div class="tree-picker" id="src-tree"></div>
+        </div>
+        <div class="tree-copy-link">
+          <a href="#" id="btn-copy-src-to-dst" title="Useful if you want to see all interconnections between a selection of regions">Copy source to destination</a>
+        </div>
+      </div>
     </div>
 
-    <div class="tree-copy-link">
-      <a href="#" id="btn-copy-src-to-dst" title="Useful if you want to see all interconnections between a selection of regions">Copy source to destination</a>
+    <div class="filter-group" id="fg-destination">
+      <button class="filter-group-header" id="fgh-destination">
+        <svg class="fg-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="11" height="11" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3H2l8 9.46V19l4 2v-8.54z"></path></svg>
+        <span class="fg-title">Destination</span>
+        <span class="fg-chevron"></span>
+      </button>
+      <div class="filter-group-summary" id="fgs-destination">0 items selected</div>
+      <div class="filter-group-body">
+        <p class="filter-group-caption">Filter latency connections by the destination region. Can differ from Source to focus on connections to a specific set of regions rather than all interconnections.</p>
+        <div class="filter-section">
+          <div class="tree-toolbar" id="dst-tree-toolbar"></div>
+          <div class="tree-picker" id="dst-tree"></div>
+        </div>
+        <div class="tree-copy-link">
+          <a href="#" id="btn-copy-dst-to-src" title="Useful if you want to see all interconnections between a selection of regions">Copy destination to source</a>
+        </div>
+      </div>
     </div>
 
-    <div class="filter-group-header">Destination</div>
-
-    <div class="filter-section">
-      <div class="tree-toolbar" id="dst-tree-toolbar"></div>
-      <div class="tree-picker" id="dst-tree"></div>
+    <div class="filter-group" id="fg-latency">
+      <button class="filter-group-header" id="fgh-latency">
+        <svg class="fg-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="11" height="11" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3H2l8 9.46V19l4 2v-8.54z"></path></svg>
+        <span class="fg-title">Latency</span>
+        <span class="fg-chevron"></span>
+      </button>
+      <div class="filter-group-summary" id="fgs-latency">No filter</div>
+      <div class="filter-group-body">
+        <p class="filter-group-caption">Show only connections within a latency range (ms).</p>
+        <div class="filter-section">
+          <div class="range-row">
+            <input type="number" id="lat-min" placeholder="Min" min="0" />
+            <span>–</span>
+            <input type="number" id="lat-max" placeholder="Max" min="0" />
+            <label> ms</label>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="tree-copy-link">
-      <a href="#" id="btn-copy-dst-to-src" title="Useful if you want to see all interconnections between a selection of regions">Copy destination to source</a>
-    </div>
-
-    <div class="filter-group-header">Latency</div>
-    <div class="filter-section">
-      <div class="range-row">
-        <input type="number" id="lat-min" placeholder="Min" min="0" />
-        <span>–</span>
-        <input type="number" id="lat-max" placeholder="Max" min="0" />
-        <label> ms</label>
+    <div class="filter-group" id="fg-products">
+      <button class="filter-group-header" id="fgh-products">
+        <svg class="fg-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="11" height="11" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3H2l8 9.46V19l4 2v-8.54z"></path></svg>
+        <span class="fg-title">Product Availability</span>
+        <span class="fg-chevron"></span>
+      </button>
+      <div class="filter-group-summary" id="fgs-products">No filter</div>
+      <div class="filter-group-body">
+        <p class="filter-group-caption">Select products that must be available in a region to include it on the map. GA / Preview / Retiring are treated as a logical OR.</p>
+        <div class="prod-search-row">
+          <input type="text" id="prod-search" placeholder="Search products…" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="tree-toolbar" id="prod-tree-toolbar"></div>
+        <div class="tree-picker" id="prod-tree"></div>
+        <div class="prod-status-row">
+          <label class="prod-status-label">
+            <input type="checkbox" class="tree-cb prod-status-cb" id="prod-status-ga" value="GA" checked />
+            GA
+          </label>
+          <label class="prod-status-label">
+            <input type="checkbox" class="tree-cb prod-status-cb" id="prod-status-preview" value="Preview" checked />
+            Preview
+          </label>
+          <label class="prod-status-label">
+            <input type="checkbox" class="tree-cb prod-status-cb" id="prod-status-retiring" value="Retiring" checked />
+            Retiring
+          </label>
+        </div>
       </div>
     </div>
 
@@ -85,6 +142,10 @@
       <button class="btn btn-secondary" id="btn-reset">Reset</button>
     </div>
     <div id="filter-auto-msg" style="display:none"></div>
+    <div id="prod-excluded" style="display:none">
+      <div id="prod-excluded-label">Regions excluded by product filter:</div>
+      <ul id="prod-excluded-list"></ul>
+    </div>
 
   </div>
 
@@ -113,7 +174,7 @@
   </div>
   <div id="legend">
     <div id="legend-toggle" title="Toggle legend">
-      <span id="legend-toggle-label">Legend and Latency Table</span>
+      <span id="legend-toggle-label">Legend and Data Tables</span>
       <svg id="legend-icon-expand" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M7.23 2.5a.5.5 0 0 0-.5-.5H2.5a.5.5 0 0 0-.5.5v4.23a.5.5 0 0 0 1 0V3.708l3.377 3.377a.5.5 0 1 0 .707-.707L3.707 3H6.73a.5.5 0 0 0 .5-.5m4.27.5A1.5 1.5 0 0 1 13 4.5V8H9.769a1.77 1.77 0 0 0-1.77 1.77V13H4.5A1.5 1.5 0 0 1 3 11.5V9.27a.5.5 0 0 0-1 0v2.23A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2H9.27a.5.5 0 0 0 0 1z"></path></svg>
       <svg id="legend-icon-shrink" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="14" height="14" viewBox="0 0 32 32"><path fill="currentColor" d="M28 28H17a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h11a2.003 2.003 0 0 1 2 2v6a2.003 2.003 0 0 1-2 2m-11-8v6h11.002L28 20Zm-5-10v3.586L7.707 9.293l-1.414 1.414L10.586 15H7v2h7v-7z"></path><path fill="currentColor" d="M13 22H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h22a2 2 0 0 1 2 2v9h-2V7H4v13h9Z"></path></svg>
     </div>
@@ -138,11 +199,12 @@
           </div>
           <div class="leg-item">
             <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#707687" stroke="#ff0000" stroke-width="1.5" stroke-dasharray="1,3" stroke-linecap="square"/></svg>
-            Restricted Access
+            Reserved Access
           </div>
         </div>
       </div>
       <button id="btn-table" title="Show data table">&#9783; View Latency Table</button>
+      <button id="btn-prod-avail" title="Show product availability for displayed regions"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="13" height="13" viewBox="0 0 2048 2048" style="vertical-align:-1px;margin-right:4px"><path fill="currentColor" d="m960 120l832 416v1040l-832 415l-832-415V536zm625 456L960 264L719 384l621 314zM960 888l238-118l-622-314l-241 120zM256 680v816l640 320v-816zm768 1136l640-320V680l-640 320z"/></svg>Product Availability</button>
     </div>
   </div>
 </div>
@@ -185,8 +247,8 @@
         <div class="info-meta" id="info-regions-meta"></div>
       </section>
       <section class="info-section">
-        <h3>Restricted Access</h3>
-        <p>Restricted Access status is <strong>not</strong> exposed by <code>az account list-locations</code>. It is sourced separately from the <a href="https://learn.microsoft.com/en-us/azure/reliability/regions-list" target="_blank" rel="noopener">Azure regions list</a> page on Microsoft Learn, which documents which regions require special access approval.</p>
+        <h3>Reserved Access</h3>
+        <p>Reserved Access status is <strong>not</strong> exposed by <code>az account list-locations</code>. It is sourced separately from the <a href="https://learn.microsoft.com/en-us/azure/reliability/regions-list" target="_blank" rel="noopener">Azure regions list</a> page on Microsoft Learn, which documents which regions require special access approval.</p>
       </section>
     </div>
   </div>
@@ -208,6 +270,29 @@
         <thead id="data-table-head"></thead>
         <tbody id="data-table-body"></tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- Product Availability Modal -->
+<div id="prod-avail-modal" style="display:none">
+  <div id="prod-avail-modal-box">
+    <div id="prod-avail-modal-header">
+      <span id="prod-avail-modal-title">Product Availability</span>
+      <div id="prod-avail-modal-actions">
+        <button id="btn-copy-prod-csv" title="Copy table as CSV">Copy Data</button>
+        <button id="btn-prod-avail-close">&times;</button>
+      </div>
+    </div>
+    <div id="prod-avail-modal-body">
+      <div id="prod-avail-empty-msg" style="display:none">Apply a product filter to see availability by region.</div>
+      <div id="prod-avail-table-wrap">
+        <table id="prod-avail-table">
+          <thead id="prod-avail-thead"></thead>
+          <tbody id="prod-avail-tbody"></tbody>
+        </table>
+      </div>
+      <div id="prod-avail-footnote" style="display:none"></div>
     </div>
   </div>
 </div>
