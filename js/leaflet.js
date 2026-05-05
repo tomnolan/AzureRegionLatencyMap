@@ -1,3 +1,18 @@
+// ─────────────────────────────────────────────
+//  Mobile warning
+// ─────────────────────────────────────────────
+(function () {
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
+  if (isMobile) {
+    const modal = document.getElementById('mobile-modal');
+    modal.style.display = 'flex';
+    const close = () => { modal.style.display = 'none'; };
+    document.getElementById('btn-mobile-close').addEventListener('click', close);
+    document.getElementById('btn-mobile-continue').addEventListener('click', close);
+  }
+})();
+
 // Data — populated by init()
 let regionRows = [];
 const regionMap = {};
@@ -868,6 +883,10 @@ function openTableModal() {
 
 document.getElementById('btn-table').addEventListener('click', openTableModal);
 
+document.getElementById('legend-toggle').addEventListener('click', () => {
+  document.getElementById('legend').classList.toggle('legend-collapsed');
+});
+
 document.getElementById('btn-copy-csv').addEventListener('click', () => {
   const btn = document.getElementById('btn-copy-csv');
   const csv = btn._csvData;
@@ -927,7 +946,16 @@ fetch('Data/version.json')
     if (el) el.textContent = 'Unknown';
   });
 
-document.getElementById('btn-info').addEventListener('click', () => {
+function toggleFilterPane(collapse) {
+  document.body.classList.toggle('pane-collapsed', collapse);
+}
+
+document.getElementById('btn-collapse-pane').addEventListener('click', () => toggleFilterPane(true));
+document.getElementById('btn-expand-pane-info').addEventListener('click', () => toggleFilterPane(false));
+document.getElementById('btn-expand-pane-filter').addEventListener('click', () => toggleFilterPane(false));
+
+document.getElementById('btn-info').addEventListener('click', (e) => {
+  e.preventDefault();
   document.getElementById('info-modal').style.display = 'flex';
 });
 

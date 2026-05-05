@@ -21,12 +21,28 @@
 <body>
 
 <!-- Filter Pane -->
+<div id="filter-collapsed-bar">
+  <button class="pane-strip-btn" id="btn-expand-pane-info" title="Expand pane">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20a8 8 0 1 0 0-16a8 8 0 0 0 0 16m0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m-1-11v6h2v-6zm0-4h2v2h-2z"></path></svg>
+  </button>
+  <button class="pane-strip-btn" id="btn-expand-pane-filter" title="Expand pane">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3H2l8 9.46V19l4 2v-8.54z"></path></svg>
+  </button>
+  <span id="filter-collapsed-title">https://azlatencymap.tinyint.com</span>
+</div>
+
 <div id="filter-pane">
   <div id="filter-header">
-    <h1>Azure Region Latency Map</h1>
+    <div id="filter-header-top">
+      <h1>Azure Region Latency Map</h1>
+      <button id="btn-collapse-pane" title="Collapse pane">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M17.59 18L19 16.59L14.42 12L19 7.41L17.59 6l-6 6z"></path><path fill="currentColor" d="m11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"></path></svg>
+      </button>
+    </div>
     <p>Visualizes network latency between Azure regions on an interactive map. Latency data is sourced from the <a href="https://learn.microsoft.com/en-us/azure/networking/azure-network-latency" target="_blank" rel="noopener">Azure network latency statistics</a> published by Microsoft. Region location data is retrieved directly from Azure via <a href="https://learn.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-15.5.0" target="_blank" rel="noopener">PowerShell</a> or the <a href="https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest#az-account-list-locations" target="_blank" rel="noopener">Azure CLI</a>.</p>
     <div id="github-bar">
       <a href="https://github.com/tomnolan/AzureRegionLatencyMap" target="_blank" rel="noopener"> github.com/tomnolan/AzureRegionLatencyMap</a>
+      <a href="#" id="btn-info"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="13" height="13" viewBox="0 0 24 24" style="display:inline-block;vertical-align:middle;margin-right:4px"><path fill="currentColor" d="M12 20a8 8 0 1 0 0-16a8 8 0 0 0 0 16m0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m-1-11v6h2v-6zm0-4h2v2h-2z"></path></svg>Data Sources &amp; Version</a>
     </div>
   </div>
 
@@ -96,75 +112,102 @@
     <div class="tt-details" id="tt-node-details"></div>
   </div>
   <div id="legend">
-    <div class="leg-title">Latency (ms)</div>
-    <div class="leg-item"><div class="leg-line" style="background:#00e676"></div> &lt; 50 ms</div>
-    <div class="leg-item"><div class="leg-line" style="background:#ffee58"></div> 50 – 100 ms</div>
-    <div class="leg-item"><div class="leg-line" style="background:#ffa726"></div> 100 – 200 ms</div>
-    <div class="leg-item"><div class="leg-line" style="background:#ef5350"></div> &gt; 200 ms</div>
-    <div class="leg-title" style="margin-top:10px">Regions</div>
-    <div class="leg-item">
-      <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#1955EC" stroke="#ffffff" stroke-width="1.5"/></svg>
-      3+ AZ
+    <div id="legend-toggle" title="Toggle legend">
+      <span id="legend-toggle-label">Legend and Latency Table</span>
+      <svg id="legend-icon-expand" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M7.23 2.5a.5.5 0 0 0-.5-.5H2.5a.5.5 0 0 0-.5.5v4.23a.5.5 0 0 0 1 0V3.708l3.377 3.377a.5.5 0 1 0 .707-.707L3.707 3H6.73a.5.5 0 0 0 .5-.5m4.27.5A1.5 1.5 0 0 1 13 4.5V8H9.769a1.77 1.77 0 0 0-1.77 1.77V13H4.5A1.5 1.5 0 0 1 3 11.5V9.27a.5.5 0 0 0-1 0v2.23A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2H9.27a.5.5 0 0 0 0 1z"></path></svg>
+      <svg id="legend-icon-shrink" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="14" height="14" viewBox="0 0 32 32"><path fill="currentColor" d="M28 28H17a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h11a2.003 2.003 0 0 1 2 2v6a2.003 2.003 0 0 1-2 2m-11-8v6h11.002L28 20Zm-5-10v3.586L7.707 9.293l-1.414 1.414L10.586 15H7v2h7v-7z"></path><path fill="currentColor" d="M13 22H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h22a2 2 0 0 1 2 2v9h-2V7H4v13h9Z"></path></svg>
     </div>
-    <div class="leg-item">
-      <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#707687" stroke="#ffffff" stroke-width="1.5"/></svg>
-      &lt; 3 AZ
-    </div>
-    <div class="leg-item">
-      <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#707687" stroke="#ff0000" stroke-width="1.5" stroke-dasharray="1,3" stroke-linecap="square"/></svg>
-      Restricted Access
-    </div>
-  </div>
-  <button id="btn-table" title="Show data table">&#9783; Table</button>
-  <button id="btn-info" title="Data source information"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24" style="display:block"><path fill="currentColor" d="M12 20a8 8 0 1 0 0-16a8 8 0 0 0 0 16m0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m-1-11v6h2v-6zm0-4h2v2h-2z"></path></svg></button>
-
-  <!-- Info Modal -->
-  <div id="info-modal" style="display:none">
-    <div id="info-modal-box">
-      <div id="info-modal-header">
-        <span id="info-modal-title">Data Sources</span>
-        <button id="btn-info-close">&times;</button>
-      </div>
-      <div id="info-modal-body">
-        <section class="info-section">
-          <h3>App Version</h3>
-          <div class="info-meta" id="info-version-meta">Loading&hellip;</div>
-        </section>
-        <section class="info-section">
-          <h3>Latency Data</h3>
-          <p>Round-trip latency figures are sourced from the <a href="https://learn.microsoft.com/en-us/azure/networking/azure-network-latency" target="_blank" rel="noopener">Azure network latency</a> page on Microsoft Learn. The dataset is updated periodically by Microsoft.</p>
-          <div class="info-meta" id="info-latency-meta"></div>
-        </section>
-        <section class="info-section">
-          <h3>Region Data</h3>
-          <p>Region metadata (coordinates, geography group, availability zones) is retrieved from the Azure CLI via <code>az account list-locations</code>.</p>
-          <div class="info-meta" id="info-regions-meta"></div>
-        </section>
-        <section class="info-section">
-          <h3>Restricted Access</h3>
-          <p>Restricted Access status is <strong>not</strong> exposed by <code>az account list-locations</code>. It is sourced separately from the <a href="https://learn.microsoft.com/en-us/azure/reliability/regions-list" target="_blank" rel="noopener">Azure regions list</a> page on Microsoft Learn, which documents which regions require special access approval.</p>
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <!-- Data Table Modal -->
-  <div id="table-modal" style="display:none">
-    <div id="table-modal-box">
-      <div id="table-modal-header">
-        <span id="table-modal-title">Connection Data</span>
-        <div id="table-modal-actions">
-          <button id="btn-copy-csv" style="display:none" title="Copy table as CSV">Copy Data</button>
-          <button id="btn-table-close">&times;</button>
+    <div id="legend-body">
+      <div class="leg-sections-row">
+        <div class="leg-section">
+          <div class="leg-title">Latency (ms)</div>
+          <div class="leg-item"><div class="leg-line" style="background:#00e676"></div> &lt; 50 ms</div>
+          <div class="leg-item"><div class="leg-line" style="background:#ffee58"></div> 50 – 100 ms</div>
+          <div class="leg-item"><div class="leg-line" style="background:#ffa726"></div> 100 – 200 ms</div>
+          <div class="leg-item"><div class="leg-line" style="background:#ef5350"></div> &gt; 200 ms</div>
+        </div>
+        <div class="leg-section">
+          <div class="leg-title">Regions</div>
+          <div class="leg-item">
+            <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#1955EC" stroke="#ffffff" stroke-width="1.5"/></svg>
+            3+ AZ
+          </div>
+          <div class="leg-item">
+            <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#707687" stroke="#ffffff" stroke-width="1.5"/></svg>
+            &lt; 3 AZ
+          </div>
+          <div class="leg-item">
+            <svg class="leg-circle-icon" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#707687" stroke="#ff0000" stroke-width="1.5" stroke-dasharray="1,3" stroke-linecap="square"/></svg>
+            Restricted Access
+          </div>
         </div>
       </div>
-      <div id="table-modal-body">
-        <div id="table-empty-msg" style="display:none">Select source and destination regions using the filters, then open the table to view latency data.</div>
-        <table id="data-table">
-          <thead id="data-table-head"></thead>
-          <tbody id="data-table-body"></tbody>
-        </table>
+      <button id="btn-table" title="Show data table">&#9783; View Latency Table</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Warning Modal -->
+<div id="mobile-modal" style="display:none">
+  <div id="mobile-modal-box">
+    <div id="mobile-modal-header">
+      <span>Mobile Browser Detected</span>
+      <button id="btn-mobile-close">&times;</button>
+    </div>
+    <div id="mobile-modal-body">
+      <p>This map is designed for desktop browsers. On a mobile device, the interactive map, filter pane, and tooltips may not function as expected.</p>
+      <p>For the best experience, open this page on a desktop or laptop browser.</p>
+      <button id="btn-mobile-continue">Continue Anyway</button>
+    </div>
+  </div>
+</div>
+
+<!-- Info Modal -->
+<div id="info-modal" style="display:none">
+  <div id="info-modal-box">
+    <div id="info-modal-header">
+      <span id="info-modal-title">Data Sources</span>
+      <button id="btn-info-close">&times;</button>
+    </div>
+    <div id="info-modal-body">
+      <section class="info-section">
+        <h3>App Version</h3>
+        <div class="info-meta" id="info-version-meta">Loading&hellip;</div>
+      </section>
+      <section class="info-section">
+        <h3>Latency Data</h3>
+        <p>Round-trip latency figures are sourced from the <a href="https://learn.microsoft.com/en-us/azure/networking/azure-network-latency" target="_blank" rel="noopener">Azure network latency</a> page on Microsoft Learn. The dataset is updated periodically by Microsoft.</p>
+        <div class="info-meta" id="info-latency-meta"></div>
+      </section>
+      <section class="info-section">
+        <h3>Region Data</h3>
+        <p>Region metadata (coordinates, geography group, availability zones) is retrieved from the Azure CLI via <code>az account list-locations</code>.</p>
+        <div class="info-meta" id="info-regions-meta"></div>
+      </section>
+      <section class="info-section">
+        <h3>Restricted Access</h3>
+        <p>Restricted Access status is <strong>not</strong> exposed by <code>az account list-locations</code>. It is sourced separately from the <a href="https://learn.microsoft.com/en-us/azure/reliability/regions-list" target="_blank" rel="noopener">Azure regions list</a> page on Microsoft Learn, which documents which regions require special access approval.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Data Table Modal -->
+<div id="table-modal" style="display:none">
+  <div id="table-modal-box">
+    <div id="table-modal-header">
+      <span id="table-modal-title">Connection Data</span>
+      <div id="table-modal-actions">
+        <button id="btn-copy-csv" style="display:none" title="Copy table as CSV">Copy Data</button>
+        <button id="btn-table-close">&times;</button>
       </div>
+    </div>
+    <div id="table-modal-body">
+      <div id="table-empty-msg" style="display:none">Select source and destination regions using the filters, then open the table to view latency data.</div>
+      <table id="data-table">
+        <thead id="data-table-head"></thead>
+        <tbody id="data-table-body"></tbody>
+      </table>
     </div>
   </div>
 </div>
