@@ -554,32 +554,43 @@ function renderConnections(options = {}) {
 
   const srcSet = getTreeSelectedRegions('src-tree');
   const dstSet = getTreeSelectedRegions('dst-tree');
-
-  if ((srcSet !== null && srcSet.size === 0) || (dstSet !== null && dstSet.size === 0)) {
-    document.getElementById('stat-lines').textContent = '0';
-    document.getElementById('stat-regions').textContent = '0';
-    currentFiltered = [];
-    activeRegionNames = new Set();
-    return;
-  }
-
   const latMin = parseFloat(document.getElementById('lat-min').value) || null;
   const latMax = parseFloat(document.getElementById('lat-max').value) || null;
-
   const prodExcluded = getProductExcludedRegions(); // null = no filter
 
-  const filtered = connections.filter(c => {
-    const inSrc = r => !srcSet || srcSet.has(r);
-    const inDst = r => !dstSet || dstSet.has(r);
-    if (!((inSrc(c.source) && inDst(c.target)) || (inSrc(c.target) && inDst(c.source)))) return false;
-    if (latMin !== null && c.latency < latMin) return false;
-    if (latMax !== null && c.latency > latMax) return false;
-    if (prodExcluded !== null && (prodExcluded.has(c.source) || prodExcluded.has(c.target))) return false;
-    return true;
-  });
+  // Default mode: no filters applied — show all region markers and draw paths only for a selected node
+  const isDefaultMode = (srcSet !== null && srcSet.size === 0)
+    && (dstSet !== null && dstSet.size === 0)
+    && latMin === null && latMax === null && prodExcluded === null;
 
-  activeRegionNames = new Set();
-  filtered.forEach(c => { activeRegionNames.add(c.source); activeRegionNames.add(c.target); });
+  let filtered;
+  if (isDefaultMode) {
+    filtered = selectedNode !== null
+      ? connections.filter(c => c.source === selectedNode || c.target === selectedNode)
+      : [];
+    activeRegionNames = new Set(regionRows.map(r => r.DisplayName));
+  } else {
+    if ((srcSet !== null && srcSet.size === 0) || (dstSet !== null && dstSet.size === 0)) {
+      document.getElementById('stat-lines').textContent = '0';
+      document.getElementById('stat-regions').textContent = '0';
+      currentFiltered = [];
+      activeRegionNames = new Set();
+      return;
+    }
+
+    filtered = connections.filter(c => {
+      const inSrc = r => !srcSet || srcSet.has(r);
+      const inDst = r => !dstSet || dstSet.has(r);
+      if (!((inSrc(c.source) && inDst(c.target)) || (inSrc(c.target) && inDst(c.source)))) return false;
+      if (latMin !== null && c.latency < latMin) return false;
+      if (latMax !== null && c.latency > latMax) return false;
+      if (prodExcluded !== null && (prodExcluded.has(c.source) || prodExcluded.has(c.target))) return false;
+      return true;
+    });
+
+    activeRegionNames = new Set();
+    filtered.forEach(c => { activeRegionNames.add(c.source); activeRegionNames.add(c.target); });
+  }
 
   const drawnPairs = new Set();
   filtered.forEach(c => {
