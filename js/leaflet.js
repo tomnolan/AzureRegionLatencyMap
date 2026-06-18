@@ -7,7 +7,10 @@
   if (isMobile) {
     const modal = document.getElementById('mobile-modal');
     modal.style.display = 'flex';
-    const close = () => { modal.style.display = 'none'; };
+    const close = () => {
+      modal.style.display = 'none';
+      if (map) map.invalidateSize();
+    };
     document.getElementById('btn-mobile-close').addEventListener('click', close);
     document.getElementById('btn-mobile-continue').addEventListener('click', close);
   }
@@ -783,6 +786,7 @@ function initMap() {
     center: [20, 20],
     zoom: 2,
     layers: [tileLayers.dark],
+    renderer: L.svg({ padding: 1 }),
   });
 
   // Move attribution to bottom-left so it doesn't overlap the legend
@@ -1492,6 +1496,9 @@ fetch('Data/version.json')
 
 function toggleFilterPane(collapse) {
   document.body.classList.toggle('pane-collapsed', collapse);
+  // Re-measure the map container after the CSS transition (~300 ms) so
+  // Leaflet loads tiles and resizes the SVG renderer to fit the new size.
+  if (map) setTimeout(() => map.invalidateSize(), 320);
 }
 
 document.getElementById('btn-collapse-pane').addEventListener('click', () => toggleFilterPane(true));
