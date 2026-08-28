@@ -134,14 +134,29 @@ if (-not (Test-Path $outputDir)) {
     New-Item -ItemType Directory -Path $outputDir | Out-Null
 }
 
-$annotated | ConvertTo-Json -Depth 10 | Set-Content -Path $OutputPath -Encoding UTF8
+$newContent = $annotated | ConvertTo-Json -Depth 10
+$skipped = $false
 
-Write-Information ""
-Write-Information "Written $($annotated.Count) regions to:"
-Write-Information "  $((Resolve-Path $OutputPath).Path)"
+if (Test-Path $OutputPath) {
+    $existing = Get-Content -Path $OutputPath -Raw -Encoding UTF8
+    if ($existing -eq $newContent) {
+        $skipped = $true
+        Write-Information ""
+        Write-Information "No changes detected — skipped writing:"
+        Write-Information "  $((Resolve-Path $OutputPath).Path)"
+    }
+}
+
+if (-not $skipped) {
+    $newContent | Set-Content -Path $OutputPath -Encoding UTF8
+    Write-Information ""
+    Write-Information "Written $($annotated.Count) regions to:"
+    Write-Information "  $((Resolve-Path $OutputPath).Path)"
+}
 
 # ── Return result object ───────────────────────────────────────────────────────
 
 [PSCustomObject]@{
     RetrievedAt = [datetime]::Now
+    Skipped     = $skipped
 }

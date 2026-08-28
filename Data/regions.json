@@ -447,6 +447,38 @@
     "availabilityZoneMappings": [
       {
         "logicalZone": "1",
+        "physicalZone": "indiasouthcentral-az2"
+      },
+      {
+        "logicalZone": "2",
+        "physicalZone": "indiasouthcentral-az1"
+      },
+      {
+        "logicalZone": "3",
+        "physicalZone": "indiasouthcentral-az3"
+      }
+    ],
+    "displayName": "India South Central",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/indiasouthcentral",
+    "metadata": {
+      "geography": "India",
+      "geographyGroup": "Asia Pacific",
+      "latitude": "17.36599922",
+      "longitude": "78.47599792",
+      "pairedRegion": [],
+      "physicalLocation": "Hyderabad",
+      "regionCategory": "Recommended",
+      "regionType": "Physical"
+    },
+    "name": "indiasouthcentral",
+    "regionalDisplayName": "(Asia Pacific) India South Central",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
+    "availabilityZoneMappings": [
+      {
+        "logicalZone": "1",
         "physicalZone": "indonesiacentral-az2"
       },
       {
@@ -1405,6 +1437,30 @@
     "ReservedAccessRegion": false
   },
   {
+    "displayName": "Austria",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/austria",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "austria",
+    "regionalDisplayName": "Austria",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
+    "displayName": "Belgium",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/belgium",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "belgium",
+    "regionalDisplayName": "Belgium",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
     "displayName": "Brazil",
     "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/brazil",
     "metadata": {
@@ -1429,6 +1485,30 @@
     "ReservedAccessRegion": false
   },
   {
+    "displayName": "Chile",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/chile",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "chile",
+    "regionalDisplayName": "Chile",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
+    "displayName": "Denmark",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/denmark",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "denmark",
+    "regionalDisplayName": "Denmark",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
     "displayName": "Europe",
     "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/europe",
     "metadata": {
@@ -1437,6 +1517,18 @@
     },
     "name": "europe",
     "regionalDisplayName": "Europe",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
+    "displayName": "Finland",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/finland",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "finland",
+    "regionalDisplayName": "Finland",
     "type": "Region",
     "ReservedAccessRegion": false
   },
@@ -1617,6 +1709,18 @@
     },
     "name": "qatar",
     "regionalDisplayName": "Qatar",
+    "type": "Region",
+    "ReservedAccessRegion": false
+  },
+  {
+    "displayName": "Saudi Arabia",
+    "id": "/subscriptions/95bc132a-bbed-4bea-95b4-73d70c9d4b9f/locations/saudiarabia",
+    "metadata": {
+      "regionCategory": "Other",
+      "regionType": "Logical"
+    },
+    "name": "saudiarabia",
+    "regionalDisplayName": "Saudi Arabia",
     "type": "Region",
     "ReservedAccessRegion": false
   },

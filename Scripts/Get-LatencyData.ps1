@@ -77,8 +77,8 @@ if ($header -notmatch '^Source,') {
 
 # ── Extract dataset date from surrounding prose ──────────────────────────────
 
-$dateMatch = [regex]::Match($md, 'current dataset was taken on \*([^*]+)\*')
-$datasetDate = if ($dateMatch.Success) { $dateMatch.Groups[1].Value.Trim() } else { $null }
+$dateMatch = [regex]::Match($md, 'covers the 30-day period ending on \*([^*]+)\*')
+$datasetDate = if ($dateMatch.Success) { [datetime]::Parse($dateMatch.Groups[1].Value.Trim()).ToString('yyyy-MM-dd') } else { $null }
 
 # ── Write output ──────────────────────────────────────────────────────────────
 
@@ -87,13 +87,25 @@ if (-not (Test-Path $outputDir)) {
     New-Item -ItemType Directory -Path $outputDir | Out-Null
 }
 
-# Join with Windows line endings for broad compatibility
-($csvLines -join "`r`n") | Set-Content -Path $OutputPath -Encoding UTF8 -NoNewline
+$newContent = $csvLines -join "`r`n"
+$skipped = $false
 
-$resolved = (Resolve-Path $OutputPath).Path
-Write-Information ""
-Write-Information "Written to:"
-Write-Information "  $resolved"
+if (Test-Path $OutputPath) {
+    $existing = Get-Content -Path $OutputPath -Raw -Encoding UTF8
+    if ($existing -eq $newContent) {
+        $skipped = $true
+        Write-Information ""
+        Write-Information "No changes detected — skipped writing:"
+        Write-Information "  $((Resolve-Path $OutputPath).Path)"
+    }
+}
+
+if (-not $skipped) {
+    $newContent | Set-Content -Path $OutputPath -Encoding UTF8 -NoNewline
+    Write-Information ""
+    Write-Information "Written to:"
+    Write-Information "  $((Resolve-Path $OutputPath).Path)"
+}
 
 # ── Optional stats ────────────────────────────────────────────────────────────
 
@@ -116,4 +128,5 @@ if ($ShowStats) {
 [PSCustomObject]@{
     RetrievedAt = [datetime]::Now
     DatasetDate = $datasetDate
+    Skipped     = $skipped
 }

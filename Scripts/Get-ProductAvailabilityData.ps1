@@ -140,14 +140,25 @@ if (-not (Test-Path $outputDir)) {
     New-Item -ItemType Directory -Path $outputDir | Out-Null
 }
 
-# Unix line endings, UTF-8 without BOM for minimal size
 $csvText = $rows -join "`n"
-[System.IO.File]::WriteAllText($OutputPath, $csvText, [System.Text.UTF8Encoding]::new($false))
+$skipped = $false
 
-$resolved = (Resolve-Path $OutputPath).Path
-Write-Information ""
-Write-Information "Written to:"
-Write-Information "  $resolved"
+if (Test-Path $OutputPath) {
+    $existing = [System.IO.File]::ReadAllText($OutputPath, [System.Text.UTF8Encoding]::new($false))
+    if ($existing -eq $csvText) {
+        $skipped = $true
+        Write-Information ""
+        Write-Information "No changes detected — skipped writing:"
+        Write-Information "  $((Resolve-Path $OutputPath).Path)"
+    }
+}
+
+if (-not $skipped) {
+    [System.IO.File]::WriteAllText($OutputPath, $csvText, [System.Text.UTF8Encoding]::new($false))
+    Write-Information ""
+    Write-Information "Written to:"
+    Write-Information "  $((Resolve-Path $OutputPath).Path)"
+}
 
 # ── Return result object ──────────────────────────────────────────────────────
 
@@ -156,4 +167,5 @@ Write-Information "  $resolved"
     OfferingCount = $offeringCount
     SkuCount      = $skuCount
     RegionCount   = $regionCount
+    Skipped       = $skipped
 }
